@@ -1,5 +1,16 @@
 import type { Config } from "tailwindcss";
 
+/**
+ * TailwindCSS Dark Theme Configuration
+ *
+ * Design System from PRD (docs/AIPRD-PRD.md):
+ * - Primary: Black (#000000) background, Crimson (#89023e) accents
+ * - Typography: Inter font, weights 400/500/600/700
+ * - Colors: Full dark theme palette with success/error/warning states
+ * - Spacing: Default Tailwind scale (mobile-first)
+ * - Shadows: Custom crimson glow effects
+ */
+
 const config: Config = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -11,6 +22,7 @@ const config: Config = {
     extend: {
       colors: {
         black: "#000000",
+        white: "#FFFFFF",
         crimson: {
           DEFAULT: "#89023e",
           light: "#a00344",
@@ -21,6 +33,14 @@ const config: Config = {
           200: "#2a2a2a",
           300: "#3a3a3a",
         },
+        text: {
+          primary: "#FFFFFF",
+          secondary: "#e0e0e0",
+          tertiary: "#8a8a8a",
+        },
+        success: "#10b981",
+        error: "#ef4444",
+        warning: "#f59e0b",
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],

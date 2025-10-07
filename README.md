@@ -69,19 +69,30 @@ A mobile-first, dark-themed PRD generator featuring:
 
 ## 🎨 Design System
 
-### Color Palette
-| Element | Color | Hex Code |
-|---------|-------|----------|
-| Primary BG | Pure Black | `#000000` |
-| Secondary BG | Dark Gray | `#1a1a1a` |
-| Tertiary BG | Medium Gray | `#2a2a2a` |
-| Borders | Light Gray | `#3a3a3a` |
-| Primary Text | White | `#FFFFFF` |
-| Accent | Deep Crimson | `#89023e` |
+### Color Palette (Configured in Tailwind)
+| Element | Tailwind Class | Hex Code |
+|---------|---------------|----------|
+| Primary BG | `bg-black` | `#000000` |
+| Secondary BG | `bg-dark-100` | `#1a1a1a` |
+| Tertiary BG | `bg-dark-200` | `#2a2a2a` |
+| Borders | `border-dark-300` | `#3a3a3a` |
+| Primary Text | `text-white` / `text-text-primary` | `#FFFFFF` |
+| Secondary Text | `text-text-secondary` | `#e0e0e0` |
+| Tertiary Text | `text-text-tertiary` | `#8a8a8a` |
+| Accent | `bg-crimson` / `text-crimson` | `#89023e` |
+| Accent Hover | `hover:bg-crimson-light` | `#a00344` |
+| Success | `text-success` / `bg-success` | `#10b981` |
+| Error | `text-error` / `bg-error` | `#ef4444` |
+| Warning | `text-warning` / `bg-warning` | `#f59e0b` |
 
 ### Typography
-- **Font:** Inter (Sans-serif)
-- **Weights:** 400, 500, 600, 700
+- **Font:** Inter (Sans-serif) - Loaded from Google Fonts
+- **Weights:** 400 (regular), 500 (medium), 600 (semibold), 700 (bold)
+- **Sizes:** Standard Tailwind scale (text-xs to text-5xl)
+
+### Shadows
+- **Crimson Glow:** `shadow-crimson` - Subtle accent shadow
+- **Crimson Glow Large:** `shadow-crimson-lg` - Prominent accent shadow
 
 ---
 
@@ -114,8 +125,9 @@ git pull origin develop
 - ✅ GitOps framework established (README, CONTRIBUTING, .gitignore, .env.example)
 - ✅ Branches created: `main`, `develop`
 - ✅ Next.js 14 with App Router and TypeScript configured
-- ✅ TailwindCSS with dark theme tokens
+- ✅ TailwindCSS dark theme complete (all PRD colors, Inter font, shadows)
 - ✅ ESLint and type checking
+- ✅ Complete design system tokens configured
 - 🔄 Docker setup (upcoming)
 
 **Install Dependencies:**
