@@ -56,12 +56,14 @@ A mobile-first, dark-themed PRD generator featuring:
 ├── /lib                     # Utility functions (to be created)
 ├── package.json             # Dependencies and scripts
 ├── tsconfig.json            # TypeScript configuration
-├── next.config.mjs          # Next.js configuration
+├── next.config.mjs          # Next.js configuration (standalone output)
 ├── tailwind.config.ts       # Tailwind CSS with dark theme
 ├── .eslintrc.json           # ESLint configuration
-├── Dockerfile               # Docker configuration (to be created)
-├── docker-compose.yml       # Docker Compose config (to be created)
+├── Dockerfile               # Multi-stage Docker build
+├── docker-compose.yml       # Docker Compose (dev + prod)
+├── .dockerignore            # Docker ignore rules
 ├── .gitignore               # Git ignore file
+├── .env.example             # Environment variables template
 └── README.md                # This file
 ```
 
@@ -128,7 +130,8 @@ git pull origin develop
 - ✅ TailwindCSS dark theme complete (all PRD colors, Inter font, shadows)
 - ✅ ESLint and type checking
 - ✅ Complete design system tokens configured
-- 🔄 Docker setup (upcoming)
+- ✅ Docker multi-stage build configured
+- 🔄 Navigation components (upcoming)
 
 **Install Dependencies:**
 ```bash
@@ -158,6 +161,52 @@ npm run lint
 
 **View Kanban Board:**
 Open `docs/kanban.html` in your browser to see all tasks and progress.
+
+---
+
+## 🐳 Docker Deployment
+
+### Quick Start with Docker
+
+**Development Mode (with hot reload):**
+```bash
+docker-compose up dev
+```
+
+**Production Mode:**
+```bash
+# Build and run production container
+docker-compose up prod
+
+# Or use Docker directly
+docker build -t rapidprd-app .
+docker run -p 3000:3000 rapidprd-app
+```
+
+### Docker Commands
+
+**Build image:**
+```bash
+docker build -t rapidprd-app .
+```
+
+**Run container:**
+```bash
+docker run -p 3000:3000 rapidprd-app
+```
+
+**Stop container:**
+```bash
+docker-compose down
+```
+
+### Environment Variables
+
+Copy `.env.example` to `.env` and configure:
+```bash
+cp .env.example .env
+# Edit .env with your API keys
+```
 
 ---
 
