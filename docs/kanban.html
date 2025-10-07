@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<!--
+======================================
+  KANBAN BOARD - VERSION INFORMATION
+======================================
+  Version: 1.0.0
+  Release Date: 2025-09-24
+  Author: Claude Code
+
+  CHANGELOG:
+  v1.0.0 (2025-09-24)
+  - Initial release
+  - 5-column kanban structure (Backlog → Sprint → QA → Staged → Live)
+  - Mobile-responsive design
+  - Claude Code integration markers
+  - Card template system with priority/assignee support
+
+  FEATURES:
+  - Self-contained single HTML file
+  - Embedded CSS/JS (no external dependencies)
+  - Responsive design (desktop/tablet/mobile)
+  - Print-friendly stylesheet
+  - Accessibility support (ARIA labels, keyboard navigation)
+  - Team member assignment system
+  - Priority color coding (high/medium/low)
+
+  USAGE:
+  Copy this file to any project directory and open in browser.
+  Claude Code can programmatically update cards using comment markers.
+======================================
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kanban Board - Task Management v1.0.0</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #f5f5f5;
+      min-height: 100vh;
+      padding: 16px;
+    }
+
+    .kanban-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .kanban-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .kanban-header h1 {
+      color: #1f2937;
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    .kanban-footer {
+      text-align: center;
+      margin-top: 32px;
+      padding: 16px;
+    }
+
+    .kanban-footer p {
+      color: #6b7280;
+      font-size: 0.875rem;
+    }
+
+    .kanban-board {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      min-height: 70vh;
+    }
+
+    .kanban-column {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      min-height: 400px;
+    }
+
+    .column-header {
+      padding: 16px;
+      border-bottom: 1px solid #e5e7eb;
+      background: #f9fafb;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .column-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #374151;
+      text-align: center;
+    }
+
+    .column-count {
+      font-size: 0.875rem;
+      color: #6b7280;
+      text-align: center;
+      margin-top: 4px;
+    }
+
+    .column-content {
+      flex: 1;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      padding: 12px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      transition: box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .card-id {
+      font-size: 0.75rem;
+      color: #6b7280;
+      font-weight: 500;
+    }
+
+    .card-priority {
+      font-size: 1rem;
+    }
+
+    .priority-high {
+      color: #ef4444;
+    }
+
+    .priority-medium {
+      color: #eab308;
+    }
+
+    .priority-low {
+      color: #22c55e;
+    }
+
+    .card-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #111827;
+      margin-bottom: 6px;
+      line-height: 1.4;
+    }
+
+    .card-description {
+      font-size: 0.75rem;
+      color: #4b5563;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: #6b7280;
+    }
+
+    .card-assignee {
+      font-weight: 500;
+    }
+
+    .card-date {
+      font-size: 0.625rem;
+    }
+
+    /* Tablet Styles */
+    @media (max-width: 1024px) {
+      .kanban-board {
+        grid-template-columns: repeat(3, 1fr);
+        overflow-x: auto;
+        padding-bottom: 16px;
+      }
+
+      .kanban-column {
+        min-width: 280px;
+      }
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 640px) {
+      body {
+        padding: 8px;
+      }
+
+      .kanban-board {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .kanban-column {
+        min-width: auto;
+        min-height: auto;
+      }
+
+      .column-header {
+        padding: 12px;
+      }
+
+      .column-content {
+        padding: 12px;
+      }
+
+      .card {
+        padding: 10px;
+      }
+    }
+
+    /* Print Styles */
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+
+      .kanban-board {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 8px;
+      }
+
+      .card {
+        box-shadow: none;
+        border: 1px solid #ccc;
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="kanban-container">
+    <div class="kanban-header">
+      <h1>Development Kanban Board</h1>
+    </div>
+
+    <div class="kanban-board">
+      <!-- Backlog Column -->
+      <div class="kanban-column">
+        <div class="column-header">
+          <div class="column-title">Backlog</div>
+          <div class="column-count">0 tasks</div>
+        </div>
+        <div class="column-content">
+          <!-- KANBAN_BACKLOG_START -->
+          <div class="card" data-id="002" data-priority="high">
+            <div class="card-header">
+              <span class="card-id">#002</span>
+              <span class="card-priority priority-high">●</span>
+            </div>
+            <h4 class="card-title">Sprint 1: Next.js 14 + TypeScript Setup</h4>
+            <p class="card-description">Initialize Next.js 14 with App Router, TypeScript, ESLint config, and project structure.</p>
+            <div class="card-footer">
+              <span class="card-assignee">[Syntax]</span>
+              <span class="card-date">2025-10-07</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="003" data-priority="high">
+            <div class="card-header">
+              <span class="card-id">#003</span>
+              <span class="card-priority priority-high">●</span>
+            </div>
+            <h4 class="card-title">Sprint 1: TailwindCSS Dark Theme Configuration</h4>
+            <p class="card-description">Configure Tailwind with dark theme tokens, Inter font, custom colors (#000, #89023e), and design system.</p>
+            <div class="card-footer">
+              <span class="card-assignee">[Aesthetica]</span>
+              <span class="card-date">2025-10-07</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="004" data-priority="high">
+            <div class="card-header">
+              <span class="card-id">#004</span>
+              <span class="card-priority priority-high">●</span>
+            </div>
+            <h4 class="card-title">Sprint 1: Docker Environment Setup</h4>
+            <p class="card-description">Create Dockerfile (multi-stage build), docker-compose.yml, and development environment configuration.</p>
+            <div class="card-footer">
+              <span class="card-assignee">[Flow]</span>
+              <span class="card-date">2025-10-07</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="005" data-priority="high">
+            <div class="card-header">
+              <span class="card-id">#005</span>
+              <span class="card-priority priority-high">●</span>
+            </div>
+            <h4 class="card-title">Sprint 1: Security & Environment Variables</h4>
+            <p class="card-description">Setup .env.example, configure API key security, implement input sanitization framework.</p>
+            <div class="card-footer">
+              <span class="card-assignee">[Sentinal]</span>
+              <span class="card-date">2025-10-07</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="006" data-priority="high">
+            <div class="card-header">
+              <span class="card-id">#006</span>
+              <span class="card-priority priority-high">●</span>
+            </div>
+            <h4 class="card-title">Sprint 2: iOS-Style Bottom Navigation</h4>
+            <p class="card-description">Build mobile bottom nav (4 items, fixed, blur effect, crimson active state, 80px height with safe area).</p>
+            <div class="card-footer">
+              <span class="card-assignee">[Aesthetica]</span>
+              <span class="card-date">2025-10-14</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="007" data-priority="high">
+            <div class="card-header">
+              <span class="card-id">#007</span>
+              <span class="card-priority priority-high">●</span>
+            </div>
+            <h4 class="card-title">Sprint 2: Desktop Slide-Out Menu & Overlay</h4>
+            <p class="card-description">Build 320px slide-out menu from left, opaque overlay (80% black), 300ms animations, backdrop blur.</p>
+            <div class="card-footer">
+              <span class="card-assignee">[Aesthetica]</span>
+              <span class="card-date">2025-10-14</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="008" data-priority="high">
+            <div class="card-header">
+              <span class="card-id">#008</span>
+              <span class="card-priority priority-high">●</span>
+            </div>
+            <h4 class="card-title">Sprint 2: Navigation Routing & State Management</h4>
+            <p class="card-description">Implement Next.js routing, active state logic, keyboard navigation (Escape to close), focus management.</p>
+            <div class="card-footer">
+              <span class="card-assignee">[Syntax]</span>
+              <span class="card-date">2025-10-14</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="009" data-priority="medium">
+            <div class="card-header">
+              <span class="card-id">#009</span>
+              <span class="card-priority priority-medium">●</span>
+            </div>
+            <h4 class="card-title">Sprint 2: Navigation Accessibility Testing</h4>
+            <p class="card-description">Test keyboard navigation, screen reader support, touch targets (48px min), ARIA labels.</p>
+            <div class="card-footer">
+              <span class="card-assignee">[Verity]</span>
+              <span class="card-date">2025-10-14</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="010" data-priority="high">
+            <div class="card-header">
+              <span class="card-id">#010</span>
+              <span class="card-priority priority-high">●</span>
+            </div>
+            <h4 class="card-title">Sprint 3: 4-Field Dark Form UI</h4>
+            <p class="card-description">Build form with 4 fields (App Name, Description, Pain Point, Solution), dark inputs (#2a2a2a), character counters.</p>
+            <div class="card-footer">
+              <span class="card-assignee">[Aesthetica]</span>
+              <span class="card-date">2025-10-21</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="011" data-priority="high">
+            <div class="card-header">
+              <span class="card-id">#011</span>
+              <span class="card-priority priority-high">●</span>
+            </div>
+            <h4 class="card-title">Sprint 3: Form Validation & Submit Logic</h4>
+            <p class="card-description">Real-time validation, character limits (3-50, 50-500), color-coded counters, error states, submit button states.</p>
+            <div class="card-footer">
+              <span class="card-assignee">[Syntax]</span>
+              <span class="card-date">2025-10-21</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="012" data-priority="high">
+            <div class="card-header">
+              <span class="card-id">#012</span>
+              <span class="card-priority priority-high">●</span>
+            </div>
+            <h4 class="card-title">Sprint 3: Claude AI API Integration</h4>
+            <p class="card-description">Create /api/generate route, integrate Anthropic Claude API, build AI prompt template, PRD generation logic.</p>
+            <div class="card-footer">
+              <span class="card-assignee">[Syntax]</span>
+              <span class="card-date">2025-10-21</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="013" data-priority="high">
+            <div class="card-header">
+              <span class="card-id">#013</span>
+              <span class="card-priority priority-high">●</span>
+            </div>
+            <h4 class="card-title">Sprint 3: Server-Side Validation & Security</h4>
+            <p class="card-description">Input sanitization, server-side validation, rate limiting, XSS prevention, API key protection.</p>
+            <div class="card-footer">
+              <span class="card-assignee">[Sentinal]</span>
+              <span class="card-date">2025-10-21</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="014" data-priority="high">
+            <div class="card-header">
+              <span class="card-id">#014</span>
+              <span class="card-priority priority-high">●</span>
+            </div>
+            <h4 class="card-title">Sprint 4: PRD Display & Markdown Rendering</h4>
+            <p class="card-description">Build PRD display with markdown rendering, dark styling, typography hierarchy, code blocks, tables.</p>
+            <div class="card-footer">
+              <span class="card-assignee">[Syntax]</span>
+              <span class="card-date">2025-10-28</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="015" data-priority="high">
+            <div class="card-header">
+              <span class="card-id">#015</span>
+              <span class="card-priority priority-high">●</span>
+            </div>
+            <h4 class="card-title">Sprint 4: Sticky Action Bar & Interactions</h4>
+            <p class="card-description">Build sticky action bar (Download, Copy, New PRD), implement download .md file, copy to clipboard functionality.</p>
+            <div class="card-footer">
+              <span class="card-assignee">[Aesthetica]</span>
+              <span class="card-date">2025-10-28</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="016" data-priority="high">
+            <div class="card-header">
+              <span class="card-id">#016</span>
+              <span class="card-priority priority-high">●</span>
+            </div>
+            <h4 class="card-title">Sprint 4: Comprehensive QA Testing</h4>
+            <p class="card-description">Test all devices (iPhone SE, iPad, Desktop), cross-browser, accessibility audit, performance testing.</p>
+            <div class="card-footer">
+              <span class="card-assignee">[Verity]</span>
+              <span class="card-date">2025-10-28</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="017" data-priority="high">
+            <div class="card-header">
+              <span class="card-id">#017</span>
+              <span class="card-priority priority-high">●</span>
+            </div>
+            <h4 class="card-title">Sprint 4: Docker Build & Deployment</h4>
+            <p class="card-description">Build production Docker image, test deployment, configure SSL, create deployment documentation.</p>
+            <div class="card-footer">
+              <span class="card-assignee">[Flow]</span>
+              <span class="card-date">2025-10-28</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="018" data-priority="medium">
+            <div class="card-header">
+              <span class="card-id">#018</span>
+              <span class="card-priority priority-medium">●</span>
+            </div>
+            <h4 class="card-title">Sprint 4: Security Audit & Hardening</h4>
+            <p class="card-description">Final security review, penetration testing, Docker security hardening, production checklist.</p>
+            <div class="card-footer">
+              <span class="card-assignee">[Sentinal]</span>
+              <span class="card-date">2025-10-28</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="019" data-priority="low">
+            <div class="card-header">
+              <span class="card-id">#019</span>
+              <span class="card-priority priority-low">●</span>
+            </div>
+            <h4 class="card-title">Documentation: README & Setup Guide</h4>
+            <p class="card-description">Create comprehensive README.md, setup instructions, API documentation, troubleshooting guide.</p>
+            <div class="card-footer">
+              <span class="card-assignee">[Codey]</span>
+              <span class="card-date">2025-10-28</span>
+            </div>
+          </div>
+          <!-- KANBAN_BACKLOG_END -->
+        </div>
+      </div>
+
+      <!-- Sprint Column -->
+      <div class="kanban-column">
+        <div class="column-header">
+          <div class="column-title">Sprint</div>
+          <div class="column-count">0 tasks</div>
+        </div>
+        <div class="column-content">
+          <!-- KANBAN_SPRINT_START -->
+          <div class="card" data-id="001" data-priority="high">
+            <div class="card-header">
+              <span class="card-id">#001</span>
+              <span class="card-priority priority-high">●</span>
+            </div>
+            <h4 class="card-title">Sprint 1: Git Repository & Project Initialization</h4>
+            <p class="card-description">Initialize git repo, setup branching strategy, create .gitignore, and establish project foundation.</p>
+            <div class="card-footer">
+              <span class="card-assignee">[Flow]</span>
+              <span class="card-date">2025-10-07</span>
+            </div>
+          </div>
+          <!-- KANBAN_SPRINT_END -->
+        </div>
+      </div>
+
+      <!-- QA Column -->
+      <div class="kanban-column">
+        <div class="column-header">
+          <div class="column-title">QA</div>
+          <div class="column-count">0 tasks</div>
+        </div>
+        <div class="column-content">
+          <!-- KANBAN_QA_START -->
+          <!-- KANBAN_QA_END -->
+        </div>
+      </div>
+
+      <!-- Staged Column -->
+      <div class="kanban-column">
+        <div class="column-header">
+          <div class="column-title">Staged</div>
+          <div class="column-count">0 tasks</div>
+        </div>
+        <div class="column-content">
+          <!-- KANBAN_STAGED_START -->
+          <!-- KANBAN_STAGED_END -->
+        </div>
+      </div>
+
+      <!-- Live Column -->
+      <div class="kanban-column">
+        <div class="column-header">
+          <div class="column-title">Live</div>
+          <div class="column-count">0 tasks</div>
+        </div>
+        <div class="column-content">
+          <!-- KANBAN_LIVE_START -->
+          <!-- KANBAN_LIVE_END -->
+        </div>
+      </div>
+    </div>
+
+    <div class="kanban-footer">
+      <p>Kanban Board v1.0.0</p>
+    </div>
+  </div>
+
+  <!-- CARD_TEMPLATE_START -->
+  <!--
+  <div class="card" data-id="{ID}" data-priority="{PRIORITY}">
+    <div class="card-header">
+      <span class="card-id">#{ID}</span>
+      <span class="card-priority priority-{PRIORITY}">●</span>
+    </div>
+    <h4 class="card-title">{TITLE}</h4>
+    <p class="card-description">{DESCRIPTION}</p>
+    <div class="card-footer">
+      <span class="card-assignee">{ASSIGNEE}</span>
+      <span class="card-date">{DATE}</span>
+    </div>
+  </div>
+  -->
+  <!-- CARD_TEMPLATE_END -->
+
+  <script>
+    // Read-only kanban board - no drag/drop functionality
+    // Card counts are updated when cards are modified by Claude Code
+
+    document.addEventListener('DOMContentLoaded', function() {
+      updateColumnCounts();
+    });
+
+    function updateColumnCounts() {
+      const columns = ['backlog', 'sprint', 'qa', 'staged', 'live'];
+
+      columns.forEach(column => {
+        const columnContent = document.querySelector(`[class*="KANBAN_${column.toUpperCase()}_START"]`);
+        if (columnContent) {
+          const cards = columnContent.parentNode.querySelectorAll('.card');
+          const countElement = columnContent.closest('.kanban-column').querySelector('.column-count');
+          if (countElement) {
+            const count = cards.length;
+            countElement.textContent = `${count} task${count !== 1 ? 's' : ''}`;
+          }
+        }
+      });
+    }
+
+    // Accessibility: Add keyboard navigation
+    document.querySelectorAll('.card').forEach(card => {
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('role', 'article');
+      card.setAttribute('aria-label', 'Task card: ' + card.querySelector('.card-title').textContent);
+    });
+  </script>
+</body>
+</html>

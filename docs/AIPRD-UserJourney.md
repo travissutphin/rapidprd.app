@@ -1,0 +1,646 @@
+# PRD Generator - User Flow & Steps
+
+## 🎯 Complete User Journey
+
+---
+
+## Step-by-Step Flow
+
+### **Step 1: Landing Page** 
+**What User Sees:**
+- Dark background (#000000)
+- Hero section with gradient crimson headline
+- "Transform Ideas Into Production-Ready PRDs"
+- Subheading explaining value
+- Stats: "30s generation time" | "2000+ words per PRD" | "100% AI-Powered"
+- Call-to-action: Scroll down to form or "Get Started" button
+
+**Navigation:**
+- Mobile: iOS bottom nav (Generate tab active in crimson)
+- Desktop: Hamburger menu icon (top-left)
+
+**User Action:**
+- Scrolls down to form section
+- Or clicks "Get Started" (jumps to form)
+
+---
+
+### **Step 2: Form Input** 
+**What User Sees:**
+- Dark card container (#1a1a1a)
+- Header: "Tell Us About Your App"
+- Subheader: "Fill out these 4 fields to generate your comprehensive PRD"
+- 4 input fields (all required)
+
+**The 4 Input Fields:**
+
+#### **Field 1: App Name**
+- Label: "App Name *" (white text, crimson asterisk)
+- Input: Dark gray (#2a2a2a) single-line text box
+- Placeholder: "e.g., TaskFlow"
+- Character limit: 3-50 characters
+- Counter: "0/50" (bottom-right)
+- Help text: "Short, memorable name for your app"
+
+#### **Field 2: App Description**
+- Label: "App Description *"
+- Input: Dark gray textarea (4 rows)
+- Placeholder: "A task management app for remote teams that helps coordinate work across time zones with real-time updates and smart notifications..."
+- Character limit: 50-500 characters
+- Counter: "0/500"
+- Help text: "What does your app do? Be specific."
+
+#### **Field 3: User Pain Point**
+- Label: "User Pain Point *"
+- Input: Dark gray textarea (4 rows)
+- Placeholder: "Remote teams struggle to know what everyone is working on and when tasks are due. This leads to duplicated work, missed deadlines, and constant status update meetings..."
+- Character limit: 50-500 characters
+- Counter: "0/500"
+- Help text: "What problem are users facing right now?"
+
+#### **Field 4: How Your App Solves It**
+- Label: "How Your App Solves It *"
+- Input: Dark gray textarea (4 rows)
+- Placeholder: "TaskFlow provides a real-time dashboard showing all team tasks with automatic time zone conversion for deadlines. Smart notifications prevent information overload while keeping everyone aligned..."
+- Character limit: 50-500 characters
+- Counter: "0/500"
+- Help text: "How does your solution make their lives better?"
+
+**Form Validation (Real-Time):**
+- Characters < 50: Counter shows in gray (#8a8a8a)
+- Characters 50-400: Counter turns green (#10b981) ✓
+- Characters 400-500: Counter turns amber (#f59e0b) ⚠️
+- Characters > 500: Counter turns red (#ef4444), border red ✗
+- Missing required field: Red border, error message below
+
+**Submit Button:**
+- Text: "Generate PRD" with lightning bolt icon
+- Background: Crimson gradient (#89023e)
+- Size: Full width, 56px tall
+- States:
+  - Default: Crimson with shadow
+  - Hover: Lifts up, brighter shadow
+  - Disabled: Gray (when form invalid)
+  - Loading: Shows spinner + "Generating Your PRD..."
+
+**User Action:**
+- Fills out all 4 fields
+- Watches validation feedback in real-time
+- Clicks "Generate PRD" when all fields valid
+
+---
+
+### **Step 3: Loading State** ⏳
+**What User Sees:**
+- Button changes to loading state
+- Spinner animation (crimson)
+- Text: "Generating Your PRD..."
+- Below button: "This typically takes 30-45 seconds"
+- Progress message: "AI is analyzing your app and creating a comprehensive PRD..."
+- Form fields disabled (grayed out)
+- User cannot scroll or interact with form
+
+**What's Happening (Backend):**
+1. Form data sent to API: `POST /api/generate`
+2. Data validated on server
+3. Prompt generated with user input
+4. Claude API called with prompt
+5. AI generates 2000-3000 word PRD
+6. Response sent back to frontend
+
+**Duration:** 30-45 seconds (AI processing time)
+
+**User Action:**
+- Waits (cannot interact)
+- Sees progress feedback
+
+---
+
+### **Step 4: PRD Display** 📄
+**What User Sees:**
+
+#### **Sticky Action Bar (Top)**
+- Background: Dark with blur effect (#1a1a1a at 95% opacity)
+- Border: 1px solid #3a3a3a
+- Rounded corners
+- Stays visible when scrolling
+- Contains 3 buttons:
+
+**Button 1: Download** (Crimson)
+- Icon: Download arrow
+- Text: "Download"
+- Action: Downloads markdown file
+- Filename: `{app_name}_prd.md`
+
+**Button 2: Copy** (Dark Gray)
+- Icon: Clipboard
+- Text: "Copy"
+- Action: Copies entire PRD to clipboard
+- Success state: Shows "Copied!" with checkmark (2 seconds)
+
+**Button 3: New PRD** (White Border)
+- Icon: Plus
+- Text: "New PRD"
+- Action: Returns to form (resets everything)
+
+#### **Success Indicator**
+- Green dot (pulsing animation)
+- Text: "PRD Generated Successfully"
+
+#### **PRD Content Card**
+- Background: Dark (#1a1a1a)
+- Border: 1px solid #3a3a3a
+- Rounded corners: 16px
+- Padding: 32px (mobile), 48px (desktop)
+- Max-width: 1200px
+
+**PRD Sections (Generated by AI):**
+
+1. **# PRD: [App Name]**
+   - Large heading (48px), white text
+   - Bottom border
+
+2. **## Executive Summary**
+   - 2-3 paragraphs
+   - Overview of app, users, value
+
+3. **## Product Overview**
+   - What it is
+   - Who it's for
+   - Core value proposition
+
+4. **## Problem Space**
+   - User pain points (detailed)
+   - Current alternatives
+   - Your solution
+
+5. **## Core Features**
+   - 6-8 key features
+   - Each with description, value, priority
+
+6. **## MVP Scope**
+   - Phase 1: MVP (build first)
+   - Phase 2: Enhancements
+   - Phase 3: Future vision
+   - MVP success criteria
+
+7. **## User Stories**
+   - 10-12 user stories
+   - Format: "As a [user], I want [feature] so that [benefit]"
+   - Acceptance criteria for each
+
+8. **## Technical Recommendations**
+   - Suggested tech stack
+   - Architecture considerations
+   - Key technical decisions
+
+9. **## Non-Functional Requirements**
+   - Performance targets
+   - Security requirements
+   - Reliability needs
+
+10. **## Success Metrics**
+    - Primary KPIs
+    - Secondary metrics
+    - Analytics requirements
+
+11. **## Risks & Mitigation**
+    - 4-5 risks identified
+    - Likelihood, impact, mitigation for each
+
+12. **## Launch Checklist**
+    - Pre-launch requirements
+    - Technical, testing, security items
+
+13. **## Appendix**
+    - Glossary
+    - References
+
+**Typography Styling:**
+- Headings: White, bold, clear hierarchy
+- Body text: Off-white (#e0e0e0)
+- Code blocks: Dark background with crimson left border
+- Tables: Dark header, alternating rows
+- Lists: Crimson bullets
+- Links: Crimson, underline on hover
+
+**User Action:**
+- Scrolls through PRD
+- Reviews content
+- Decides next action (download, copy, or new)
+
+---
+
+### **Step 5: Download/Copy** 💾
+**Option A: Download Markdown**
+
+**What Happens:**
+1. User clicks "Download" button
+2. Browser downloads file immediately
+3. Filename: `taskflow_prd.md` (sanitized app name)
+4. File contains complete markdown text
+5. Ready to use with AI tools or share with team
+
+**Option B: Copy to Clipboard**
+
+**What Happens:**
+1. User clicks "Copy" button
+2. Entire PRD copied to clipboard
+3. Button shows success state:
+   - Icon changes to checkmark
+   - Text changes to "Copied!"
+   - Button turns green briefly
+4. After 2 seconds, returns to normal
+5. User can paste anywhere (Slack, email, docs)
+
+**User Action:**
+- Downloads for file storage
+- Or copies to paste elsewhere
+- Can do both!
+
+---
+
+### **Step 6: Generate New PRD** 🔄
+**What Happens:**
+1. User clicks "New PRD" button
+2. Smooth transition/fade animation
+3. Returns to form (Step 2)
+4. All fields cleared
+5. Ready for new input
+
+**User Action:**
+- Generates another PRD
+- Repeats process from Step 2
+
+---
+
+## 📊 Visual Flow Diagram
+
+```
+┌─────────────────────────────────────────────────────┐
+│  STEP 1: LANDING PAGE                               │
+│  ▸ Dark hero section                                │
+│  ▸ Value proposition                                │
+│  ▸ Stats display                                    │
+│  ▸ Call-to-action                                   │
+└───────────────┬─────────────────────────────────────┘
+                │
+                │ User scrolls or clicks "Get Started"
+                ▼
+┌─────────────────────────────────────────────────────┐
+│  STEP 2: FORM INPUT                                 │
+│  ┌───────────────────────────────────────────────┐ │
+│  │ 1. App Name (3-50 chars)         [  0/50 ]   │ │
+│  │ 2. Description (50-500 chars)    [ 0/500 ]   │ │
+│  │ 3. Pain Point (50-500 chars)     [ 0/500 ]   │ │
+│  │ 4. Solution (50-500 chars)       [ 0/500 ]   │ │
+│  │                                                │ │
+│  │  [🚀 Generate PRD]  ← Crimson Button         │ │
+│  └───────────────────────────────────────────────┘ │
+└───────────────┬─────────────────────────────────────┘
+                │
+                │ User fills form & clicks "Generate"
+                ▼
+┌─────────────────────────────────────────────────────┐
+│  STEP 3: LOADING                                    │
+│  ▸ Spinner animation (crimson)                      │
+│  ▸ "Generating Your PRD..."                         │
+│  ▸ "Typically takes 30-45 seconds"                  │
+│  ▸ Progress message                                 │
+│                                                      │
+│  Backend: Claude AI generates comprehensive PRD     │
+└───────────────┬─────────────────────────────────────┘
+                │
+                │ AI completes (30-45 seconds)
+                ▼
+┌─────────────────────────────────────────────────────┐
+│  STEP 4: PRD DISPLAY                                │
+│  ┌─────────────────────────────────────────────┐   │
+│  │ 🟢 PRD Generated Successfully               │   │
+│  │ [📥 Download] [📋 Copy] [➕ New PRD]       │   │
+│  └─────────────────────────────────────────────┘   │
+│         ↑ Sticky Action Bar                         │
+│  ┌───────────────────────────────────────────────┐ │
+│  │ # PRD: TaskFlow                               │ │
+│  │                                                │ │
+│  │ ## Executive Summary                          │ │
+│  │ [Content...]                                  │ │
+│  │                                                │ │
+│  │ ## Product Overview                           │ │
+│  │ [Content...]                                  │ │
+│  │                                                │ │
+│  │ ## Core Features                              │ │
+│  │ [Content...]                                  │ │
+│  │                                                │ │
+│  │ [...12 more sections...]                      │ │
+│  └───────────────────────────────────────────────┘ │
+└───────────────┬────────┬────────┬───────────────────┘
+                │        │        │
+       ┌────────┘        │        └─────────┐
+       ▼                 ▼                  ▼
+  [Download]         [Copy]           [New PRD]
+  Save .md file      To clipboard     Back to Step 2
+```
+
+---
+
+## 🎯 Complete User Journey Timeline
+
+| Time | Step | What User Does | What App Does |
+|------|------|----------------|---------------|
+| 0:00 | Land on page | Views hero section | Shows landing page |
+| 0:10 | Scroll | Sees form | Renders form with placeholders |
+| 0:30 | Fill Field 1 | Types app name | Validates, shows character count |
+| 1:00 | Fill Field 2 | Types description | Real-time validation |
+| 2:00 | Fill Field 3 | Types pain point | Updates validation state |
+| 3:00 | Fill Field 4 | Types solution | Enables submit button |
+| 3:30 | Submit | Clicks "Generate PRD" | Disables form, shows loading |
+| 3:31 | Wait | Sees spinner | Sends to API, calls Claude |
+| 4:00 | Wait | Reads progress text | AI processing... |
+| 4:15 | Wait | Still waiting | AI generating content... |
+| 4:30 | Display | Sees completed PRD | Renders markdown PRD |
+| 4:35 | Review | Scrolls through PRD | Sticky bar stays visible |
+| 5:00 | Download | Clicks download | Browser downloads .md file |
+| 5:05 | Copy | Clicks copy | Copies to clipboard |
+| 5:10 | Done | Uses PRD | Ready for developers! |
+
+**Total Time:** ~5 minutes (3 min input + 0.5 min loading + 1.5 min review)
+
+---
+
+## 🔄 Alternative Flows
+
+### **Flow A: Error During Generation**
+```
+Step 2 → Step 3 → ERROR → Error Message → Back to Step 2
+```
+
+**What User Sees:**
+- Red error box appears
+- Message: "Error generating PRD: [reason]"
+- "Please try again" message
+- Form stays filled (doesn't lose data)
+- Can edit and resubmit
+
+### **Flow B: Validation Error**
+```
+Step 2 → Try Submit → Validation Fails → Show Errors → Fix → Submit
+```
+
+**What User Sees:**
+- Red borders on invalid fields
+- Error messages below each field
+- Submit button stays disabled
+- Character counters turn red
+- Must fix before submitting
+
+### **Flow C: Generate Multiple PRDs**
+```
+Step 2 → Step 3 → Step 4 → Step 6 → Back to Step 2 (repeat)
+```
+
+**What User Sees:**
+- Click "New PRD" button
+- Smooth transition back to clean form
+- Can immediately start entering new app
+- No page reload needed
+
+---
+
+## 📱 Mobile vs Desktop Differences
+
+### **Mobile (< 640px)**
+
+**Step 1: Landing**
+- Single column layout
+- iOS bottom nav visible
+- Hero text smaller (36px)
+- Stats stack vertically
+
+**Step 2: Form**
+- Full width inputs
+- Larger touch targets (48px+)
+- Vertical spacing increased
+- Keyboard opens when focusing input
+- iOS prevents zoom (16px font size)
+
+**Step 3: Loading**
+- Full screen loading state
+- Larger spinner
+- Progress text centered
+
+**Step 4: Display**
+- Single column PRD
+- Action bar 3 buttons stack on small screens
+- Smaller typography (16px body)
+- More padding for readability
+
+**Step 5: Actions**
+- Download works via mobile browser
+- Copy works via mobile clipboard
+- Share sheet available (Phase 2)
+
+### **Desktop (> 1024px)**
+
+**Step 1: Landing**
+- Wide layout (max 1200px)
+- Hero text larger (48px)
+- Stats in row
+- More white space
+
+**Step 2: Form**
+- Contained width (max 800px)
+- Centered on page
+- Hover states on inputs
+- Larger character counts
+
+**Step 3: Loading**
+- Centered in viewport
+- Elegant spinner
+- Professional messaging
+
+**Step 4: Display**
+- Wide content area
+- Action bar buttons in row
+- Larger typography (18px body)
+- More comfortable reading width
+
+**Step 5: Actions**
+- Download to default folder
+- Copy with keyboard shortcut (Ctrl/Cmd+C)
+- Can use keyboard navigation
+
+---
+
+## 💾 Data Flow
+
+### **Frontend → Backend**
+
+**API Request:**
+```json
+POST /api/generate
+
+{
+  "appName": "TaskFlow",
+  "appDescription": "A task management app for remote teams...",
+  "painPoint": "Remote teams struggle to know what everyone...",
+  "solution": "TaskFlow provides a real-time dashboard..."
+}
+```
+
+### **Backend Processing**
+
+**Steps:**
+1. Validate input (server-side)
+2. Sanitize text
+3. Generate AI prompt with user data
+4. Call Anthropic Claude API
+5. Receive generated PRD (2000-3000 words)
+6. Return to frontend
+
+### **Backend → Frontend**
+
+**API Response:**
+```json
+200 OK
+
+{
+  "prd": "# PRD: TaskFlow\n\n## Executive Summary...",
+  "generatedAt": "2025-10-07T10:30:00Z"
+}
+```
+
+### **Error Response:**
+```json
+500 Error
+
+{
+  "error": "Failed to generate PRD",
+  "details": "AI service temporarily unavailable"
+}
+```
+
+---
+
+## 🎨 Visual States Summary
+
+### **Form States**
+- **Empty:** Gray placeholders, disabled button
+- **Filling:** Real-time validation, character counts
+- **Valid:** Green indicators, enabled button
+- **Invalid:** Red borders, error messages
+- **Submitting:** Disabled, loading spinner
+- **Error:** Red error box, form still filled
+
+### **Button States**
+- **Default:** Crimson gradient, white text
+- **Hover:** Lifts up, brighter shadow
+- **Active:** Scales down (98%)
+- **Loading:** Spinner, "Generating..." text
+- **Disabled:** Gray, no interaction
+
+### **PRD Display States**
+- **Loading:** Skeleton screen (optional)
+- **Success:** Full PRD displayed
+- **Actions:** Download, Copy, New buttons
+- **Copied:** Green checkmark, "Copied!" (2s)
+
+---
+
+## ✅ User Success Criteria
+
+**User Knows They Succeeded When:**
+1. ✅ Form validation shows all green
+2. ✅ Submit button changes to loading
+3. ✅ Progress messages appear
+4. ✅ PRD displays with "Success" indicator
+5. ✅ Can scroll through complete document
+6. ✅ Download/copy buttons work
+7. ✅ Can generate another PRD
+
+**Quality Indicators:**
+- PRD is 2000-3000 words
+- All 12+ sections generated
+- Specific to their app idea
+- Professional formatting
+- Ready for developers
+
+---
+
+## 🚀 Key User Benefits
+
+**Speed:**
+- 3 minutes to fill form
+- 30-45 seconds to generate
+- Total: ~5 minutes for complete PRD
+
+**Ease:**
+- Only 4 fields required
+- Clear validation feedback
+- Helpful placeholder text
+- One-click download
+
+**Quality:**
+- Comprehensive 2000+ word PRD
+- 12+ structured sections
+- Professional formatting
+- Developer-ready
+
+**Flexibility:**
+- Download as markdown
+- Copy to clipboard
+- Generate unlimited PRDs
+- Works on any device
+
+---
+
+## 📊 Expected User Behavior
+
+**Typical Session:**
+1. **Discovery:** User finds tool via search/link
+2. **Evaluation:** Reads hero section (~15 seconds)
+3. **Engagement:** Scrolls to form
+4. **Input:** Fills 4 fields (~3 minutes)
+5. **Wait:** Loading screen (~35 seconds)
+6. **Review:** Reads generated PRD (~2 minutes)
+7. **Action:** Downloads or copies
+8. **Return:** Might generate another (40%)
+
+**Session Duration:** 5-10 minutes
+**Bounce Rate Target:** < 30%
+**Completion Rate Target:** > 75%
+**Return Rate Target:** > 40%
+
+---
+
+## 🎯 Summary
+
+**Input (4 fields):**
+1. App Name (3-50 chars)
+2. App Description (50-500 chars)
+3. User Pain Point (50-500 chars)
+4. How App Solves It (50-500 chars)
+
+**Process:**
+- Real-time validation
+- One-click submit
+- 30-45 second AI generation
+- Progress feedback
+
+**Output (Complete PRD):**
+- 2000-3000 words
+- 12+ sections
+- Professional formatting
+- Markdown file
+- Ready for developers/AI tools
+
+**Actions:**
+- Download .md file
+- Copy to clipboard
+- Generate new PRD
+
+**Total Flow:** Landing → Form → Loading → Display → Download → Done
+
+---
+
+**Simple. Fast. Professional. Complete.**
