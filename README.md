@@ -79,15 +79,33 @@ A mobile-first, dark-themed PRD generator featuring:
 
 ## 🏃 Getting Started
 
+### Clone Repository
+
+```bash
+# Clone the repository
+git clone https://github.com/travissutphin/rapidprd.app.git
+cd AIPRD
+
+# Checkout develop branch for development
+git checkout develop
+git pull origin develop
+```
+
+**Repository:** https://github.com/travissutphin/rapidprd.app.git
+
 ### Prerequisites
 - Node.js 18+
 - npm or yarn
+- Git
 - Docker & Docker Compose (for deployment)
 
 ### Development Setup
 
-**Phase 1 - Sprint 1 (Current):**
-Project initialization is in progress. Follow the kanban board for current tasks.
+**Phase 1 - Sprint 1 (Current Status):**
+- ✅ Git repository initialized and configured
+- ✅ GitOps framework established (README, CONTRIBUTING, .gitignore, .env.example)
+- ✅ Branches created: `main`, `develop`
+- 🔄 Next.js 14 setup (upcoming)
 
 **View Kanban Board:**
 Open `docs/kanban.html` in your browser to see all tasks and progress.

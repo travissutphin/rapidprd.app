@@ -46,9 +46,21 @@ hotfix/[issue-number]-[short-description]
 
 ## 🔄 Git Workflow
 
+### Repository Information
+
+**Remote:** https://github.com/travissutphin/rapidprd.app.git
+
+**Main Branches:**
+- `main` - Production-ready code
+- `develop` - Integration branch for features
+
 ### Creating a Feature Branch
 
 ```bash
+# Clone repository (first time only)
+git clone https://github.com/travissutphin/rapidprd.app.git
+cd AIPRD
+
 # Start from develop
 git checkout develop
 git pull origin develop
@@ -256,6 +268,17 @@ export function NavItem({ icon, label, active = false }: NavItemProps) {
 
 ## 🔐 Security
 
+### Protected Files
+
+The following files contain sensitive information and are excluded from git:
+
+- **CLAUDE.md** - Team workflows and AI instructions (in .gitignore)
+- **.env** - Environment variables with API keys
+- **.env.local** - Local environment overrides
+- **.env*.local** - Any local environment files
+
+**Important:** If you need to reference team workflows, check your local `CLAUDE.md` file. This file is intentionally excluded from version control to protect sensitive AI team configurations and processes.
+
 ### Security Best Practices
 
 - **Never commit:**
@@ -263,12 +286,16 @@ export function NavItem({ icon, label, active = false }: NavItemProps) {
   - Passwords
   - `.env` files
   - Sensitive data
+  - Team workflow documentation (CLAUDE.md)
+  - Private credentials
 
 - **Always:**
-  - Use environment variables
+  - Use environment variables for secrets
   - Sanitize user inputs
   - Validate on server-side
   - Keep dependencies updated
+  - Review `.gitignore` before committing
+  - Use `.env.example` as template (safe to commit)
 
 ### Reporting Security Issues
 
