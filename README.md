@@ -44,13 +44,21 @@ A mobile-first, dark-themed PRD generator featuring:
 
 ```
 /AIPRD
+├── /app                     # Next.js 14 app directory
+│   ├── layout.tsx           # Root layout with Inter font
+│   ├── page.tsx             # Home page
+│   └── globals.css          # Global styles with dark theme
 ├── /docs                    # Project documentation
 │   ├── AIPRD-PRD.md        # Product Requirements Document
 │   ├── AIPRD-UserJourney.md # User flow and steps
 │   └── kanban.html          # Development kanban board
-├── /app                     # Next.js 14 app directory (to be created)
 ├── /components              # React components (to be created)
 ├── /lib                     # Utility functions (to be created)
+├── package.json             # Dependencies and scripts
+├── tsconfig.json            # TypeScript configuration
+├── next.config.mjs          # Next.js configuration
+├── tailwind.config.ts       # Tailwind CSS with dark theme
+├── .eslintrc.json           # ESLint configuration
 ├── Dockerfile               # Docker configuration (to be created)
 ├── docker-compose.yml       # Docker Compose config (to be created)
 ├── .gitignore               # Git ignore file
@@ -105,7 +113,36 @@ git pull origin develop
 - ✅ Git repository initialized and configured
 - ✅ GitOps framework established (README, CONTRIBUTING, .gitignore, .env.example)
 - ✅ Branches created: `main`, `develop`
-- 🔄 Next.js 14 setup (upcoming)
+- ✅ Next.js 14 with App Router and TypeScript configured
+- ✅ TailwindCSS with dark theme tokens
+- ✅ ESLint and type checking
+- 🔄 Docker setup (upcoming)
+
+**Install Dependencies:**
+```bash
+npm install
+```
+
+**Run Development Server:**
+```bash
+npm run dev
+```
+
+**Build for Production:**
+```bash
+npm run build
+npm start
+```
+
+**Type Check:**
+```bash
+npm run type-check
+```
+
+**Lint Code:**
+```bash
+npm run lint
+```
 
 **View Kanban Board:**
 Open `docs/kanban.html` in your browser to see all tasks and progress.

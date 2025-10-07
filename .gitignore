@@ -37,3 +37,6 @@ next-env.d.ts
 
 # project documentation with sensitive info
 CLAUDE.md
+
+# Claude Code local directory
+.claude/
