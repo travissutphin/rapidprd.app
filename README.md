@@ -202,12 +202,143 @@ Both navigation components are designed for accessibility and meet **WCAG 2.1 AA
 - Touch Target Size (AAA): ✅ Exceeds standards
 - Color Contrast: ✅ Meets AA standards
 
+### Forms
+
+#### PRD Form
+
+**4-Field Dark Form** (`components/Forms/PRDForm.tsx`)
+
+Interactive form for generating Product Requirements Documents:
+
+**Features:**
+- 4 input fields with real-time validation
+- Character limits enforced: App Name (3-50), Others (50-500)
+- Color-coded character counters (gray/yellow/green/red)
+- Error states with validation messages
+- Submit button disabled until all fields valid
+- Dark theme inputs (#2a2a2a background)
+- Crimson focus states (#89023e)
+- Responsive design
+
+**Fields:**
+1. **App Name** - Text input (3-50 characters required)
+2. **Description** - Textarea (50-500 characters required)
+3. **Pain Point** - Textarea (50-500 characters required)
+4. **Solution** - Textarea (50-500 characters required)
+
+**Validation:**
+- **Real-time validation:** Character limits enforced on input
+- **Visual feedback:** Color-coded counters show field status
+  - Gray: Empty field
+  - Yellow (warning): Below minimum characters
+  - Green (success): Valid range
+  - Red (error): At/exceeds maximum characters
+- **Error messages:** Displayed below fields when touched and invalid
+- **Submit button:** Disabled (grayed out) until all fields valid
+
+**Styling:**
+- Background: `#2a2a2a` (bg-dark-200)
+- Border: `#3a3a3a` (border-dark-300) / `#ef4444` (error state)
+- Focus state: Crimson border with ring effect
+- Submit button: Crimson (valid) / Dark gray (invalid, disabled)
+
+**Usage:**
+```typescript
+import PRDForm from '@/components/Forms/PRDForm';
+
+// Integrated in app/page.tsx (home page)
+<PRDForm />
+```
+
+**API Integration:**
+- Form submits data to `/api/generate` endpoint
+- Loading state displayed during API call
+- Generated PRD shown with copy and download options
+- Error handling with user-friendly messages
+
+**Character Limits:**
+| Field | Minimum | Maximum |
+|-------|---------|---------|
+| App Name | 3 | 50 |
+| Description | 50 | 500 |
+| Pain Point | 50 | 500 |
+| Solution | 50 | 500 |
+
+---
+
+## 🔌 API Routes
+
+### POST /api/generate
+
+**PRD Generation Endpoint** (`app/api/generate/route.ts`)
+
+Generates a Product Requirements Document based on user input.
+
+**Request Body:**
+```typescript
+{
+  appName: string;      // 3-50 characters required
+  description: string;  // 50-500 characters required
+  painPoint: string;    // 50-500 characters required
+  solution: string;     // 50-500 characters required
+}
+```
+
+**Response (Success):**
+```typescript
+{
+  prd: string;  // Markdown-formatted PRD
+}
+```
+
+**Response (Error):**
+```typescript
+{
+  error: string;  // Error message
+}
+```
+
+**Status Codes:**
+- `200` - Success
+- `400` - Invalid request (missing fields or validation errors)
+- `429` - Rate limit exceeded
+- `500` - Server error
+
+**Current Implementation:**
+- **Placeholder Mode:** Currently uses `generatePlaceholderPRD()` function
+- **Future Enhancement:** Will integrate Anthropic Claude API for AI-powered PRD generation
+- **Security:** Full server-side validation, input sanitization, and rate limiting active
+
+**Rate Limiting:**
+- 10 requests per 15 minutes per IP address
+- Returns 429 status code when limit exceeded
+- Response headers include rate limit info:
+  - `X-RateLimit-Limit`: Maximum requests allowed
+  - `X-RateLimit-Remaining`: Remaining requests in current window
+  - `X-RateLimit-Reset`: When the rate limit resets
+  - `Retry-After`: Seconds until retry (on 429 response)
+
+**Placeholder PRD Template:**
+The placeholder generates a comprehensive 10-section PRD including:
+1. Executive Summary
+2. Problem Statement
+3. Proposed Solution
+4. Features & Requirements (Core MVP + Phase 2)
+5. User Stories
+6. Technical Requirements
+7. Success Metrics
+8. Timeline & Milestones
+9. Risks & Mitigation
+10. Appendix
+
+**TODO:** Replace placeholder with Claude API integration when ready.
+
 ### Routes & Pages
 
 The application includes the following routes, all with dark theme styling:
 
 **Active Routes:**
-- **`/`** - Home page with hero section
+- **`/`** - Home page with PRD form (4 fields, character counters)
 - **`/history`** - PRD generation history (Phase 2 placeholder)
 - **`/templates`** - PRD templates library (Phase 2 placeholder)
 - **`/settings`** - Application settings page
@@ -386,9 +517,11 @@ if (!result.valid) {
 
 **Functions:**
 - `sanitizeInput(input)` - Remove HTML tags, script/style content, prevent XSS
-- `validateTextField(input, min, max)` - Validate text with length constraints
+- `validateTextField(input, min, max)` - Validate text with length constraints and sanitize
 - `validateEnvVar(name)` - Ensure required environment variables exist
 - `getEnvVar(name, fallback?)` - Safely get environment variable with fallback
+- `checkRateLimit(identifier, maxRequests, windowMs)` - Rate limit checker (default: 10 req/15min)
+- `getClientIP(request)` - Extract client IP from request headers (handles proxies)
 
 ### Environment Variable Validation
 
@@ -421,11 +554,13 @@ Middleware (`middleware.ts`) adds security headers to all responses:
 
 ### Security Best Practices
 
-1. **Input Sanitization** - All user input is sanitized before processing
-2. **Environment Validation** - Required variables are validated at startup
-3. **Fail Fast** - Missing required config causes immediate error
-4. **Security Headers** - All responses include security headers
-5. **Simple & Robust** - No overengineering, just essentials
+1. **Input Sanitization** - All user input is sanitized before processing (XSS prevention)
+2. **Server-Side Validation** - All fields validated on server with length constraints
+3. **Rate Limiting** - 10 requests per 15 minutes per IP (prevents abuse)
+4. **Environment Validation** - Required variables are validated at startup
+5. **Fail Fast** - Missing required config causes immediate error
+6. **Security Headers** - All responses include security headers (CSP, X-Frame-Options, etc.)
+7. **Simple & Robust** - No overengineering, just essentials
 
 **Documentation:** See `lib/README.md` for detailed security utility documentation and examples.
 

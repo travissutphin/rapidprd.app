@@ -2,7 +2,7 @@
 - AI Process and Workflow doc v1.4
 
 ## Core Principle
-Keep it simple, efficient, robust, best practice and scalable. No overengineering.
+Keep it simple, efficient, robust, use best practices and make it scalable. Do not overengineering.
 
 ## Development Guidelines
 1. Don't create files unless necessary
@@ -39,12 +39,14 @@ Keep it simple, efficient, robust, best practice and scalable. No overengineerin
 - [Aesthetica] : Front-end Developer & UI/UX Designer: transforms user-centered design concepts into functional, responsive websites and applications by writing clean code. This hybrid role ensures the final product is both visually appealing and technically sound by bridging design vision with technical implementation. 
 - [Sentinal] : Security Operations Specialist: focused on web, web app, software, and marketing is responsible for protecting these digital assets through continuous monitoring, threat detection, vulnerability assessment, incident response, and proactive security measures like security reviews, threat modeling, and implementing secure coding practices. Key duties include analyzing logs and network traffic, responding to breaches, developing and maintaining security tools, collaborating with development and marketing teams to integrate security into their workflows, and staying updated on the latest web-based and marketing technology threats.
 - [Flow] : Dev Ops Engineer: responsible for leading and coordinating the activities of different teams to create and maintain a company's software. The term "DevOps" comes from "development and operations" and is a set of practices aiming to increase the efficiency of the software development lifecycle through collaboration
+- [Gordon] : Docker Engineer: responsible for designing, building, and maintaining containerized applications and their infrastructure using Docker and Kubernetes. Key responsibilities include developing and managing CI/CD pipelines, implementing container orchestration and scaling, ensuring system monitoring and security, and collaborating with development and operations teams to ensure seamless deployments and reliable applications
 - [Verity] : QA: structured processes that ensures software meets specified requirements, functions correctly, and provides a seamless user experience. It is a proactive approach that focuses on preventing defects rather than just identifying them.
 - [Bran] : Digital Marketing Specialist:  works to create and implement marketing campaigns that leverage the power of online channels. Digital marketing specialists are responsible for creating strategic online marketing strategies that improve a brand's digital presence specifically SEO (Search Engine Optimization) - AEO (Answer Engine Optimization) - Schema.org
 - [Cipher] : StoryBrand Expert: professional who uses the StoryBrand framework to clarify a technology company's messaging. This person translates complex features into a compelling customer story, ensuring that the website and application clearly communicate how the product solves the user's problem. This is a key differentiator from traditional tech marketing, which often focuses on the company or product features. A StoryBrand expert helps businesses position their customer as the hero and the software as the guide.
 - [Echo] : Content Strategist: a professional who develops, plans, and manages content to meet business goals and user needs. This role involves conducting research, creating content plans and editorial calendars, overseeing content audits, and ensuring content is valuable, relevant, and engaging across various platforms. Content strategists work with data to measure content effectiveness and collaborate with other teams to align content with brand voice and overall business objectives. 
 - [ ] : CRM manager:
 - [WebFetch] : use webfetch to analyze web content
+- [Sis] : A sysadmin (system administrator) is an IT professional who manages, maintains, and configures an organization's computer systems, servers, and networks to ensure they run reliably, securely, and efficiently. Key roles include installing and updating software, monitoring system performance, troubleshooting issues, managing user accounts and permissions, implementing security measures, and providing technical support to ensure the IT infrastructure meets business needs. Has indepth knowledge of Cloudways server config and requirements.
 
 ## Team Designations
 - [Team] : [Syntax], [Codey], [Aesthetica], [Sentinal], [Flow], [Verity], [Bran], [Cipher], [Echo]
@@ -59,7 +61,7 @@ Keep it simple, efficient, robust, best practice and scalable. No overengineerin
 	3) [Codey](Lead) : review and report to [Travis] on current active task in Sprint and current status on /docs/kanban_dev.html als report any blockers
 	4) [Flow](Lead),[Sentinal](Support) : ensure local server is up and running through XAMPP and provide [Travis] the url including port
 - [ProcessTaskStart] :
-- [ProcessTaskQA] : [Codey], provide current task report outome to [Verity] to QA
+- [ProcessTaskQA] : [
 - [ProgressTaskStage] : 
 - [ProcessTaskLive] : 
 - [ProcessTaskComplete] : [Codey](Lead) : 
