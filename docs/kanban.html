@@ -367,17 +367,29 @@
       <div class="kanban-column">
         <div class="column-header">
           <div class="column-title">QA</div>
-          <div class="column-count">4 tasks</div>
+          <div class="column-count">0 tasks</div>
         </div>
         <div class="column-content">
           <!-- KANBAN_QA_START -->
+          <!-- KANBAN_QA_END -->
+        </div>
+      </div>
+
+      <!-- Staged Column -->
+      <div class="kanban-column">
+        <div class="column-header">
+          <div class="column-title">Staged</div>
+          <div class="column-count">4 tasks</div>
+        </div>
+        <div class="column-content">
+          <!-- KANBAN_STAGED_START -->
           <div class="card" data-id="013" data-priority="high">
             <div class="card-header">
               <span class="card-id">#013</span>
               <span class="card-priority priority-high">●</span>
             </div>
             <h4 class="card-title">Sprint 3: Server-Side Validation & Security</h4>
-            <p class="card-description">✅ COMPLETED: Server-side validation enabled in API route. Input sanitization active (XSS prevention). Rate limiting implemented (10 req/15min per IP). Rate limit headers included in responses. Client IP extraction with proxy support. TypeScript ✓ ESLint ✓ Build ✓. README.md updated with comprehensive security documentation. Simple, efficient, production-ready. Ready for QA.</p>
+            <p class="card-description">✅ QA PASSED: Server-side validation operational. Input sanitization active (XSS prevention). Rate limiting (10 req/15min per IP). Rate limit headers included. Client IP extraction with proxy support. TypeScript ✓ ESLint ✓ Build ✓ (89.4 kB total). Docker ✓ Security audit ✓ README.md comprehensive documentation. Production-ready. Ready for deployment.</p>
             <div class="card-footer">
               <span class="card-assignee">[Sentinal]</span>
               <span class="card-date">2025-10-08</span>
@@ -390,7 +402,7 @@
               <span class="card-priority priority-high">●</span>
             </div>
             <h4 class="card-title">Sprint 3: Claude AI API Integration</h4>
-            <p class="card-description">✅ COMPLETED: API route created at /api/generate with placeholder PRD generator. Form integrated with API call, loading states, error handling. Generated PRD display with copy to clipboard and markdown download. TypeScript ✓ Build ✓ (2.11 kB, 89.4 kB total). README.md updated with comprehensive API documentation. Placeholder ready for Claude API integration. Simple, efficient, ready for QA.</p>
+            <p class="card-description">✅ QA PASSED: API route /api/generate functional. Placeholder PRD generator operational. Form integration working. Loading states ✓ Error handling ✓ PRD display ✓ Copy/download features ✓ TypeScript ✓ ESLint ✓ Build ✓ (2.11 kB, 89.4 kB total). Docker ✓ API documentation complete. Ready for deployment.</p>
             <div class="card-footer">
               <span class="card-assignee">[Syntax]</span>
               <span class="card-date">2025-10-08</span>
@@ -403,10 +415,10 @@
               <span class="card-priority priority-high">●</span>
             </div>
             <h4 class="card-title">Sprint 3: Form Validation & Submit Logic</h4>
-            <p class="card-description">✅ COMPLETED: Real-time validation implemented. Character limits (App Name: 3-50, Others: 50-500) enforced. Color-coded counters (gray/yellow/green/red) ✓ Error states with validation messages ✓ Submit button disabled until valid ✓ Touch-based validation (onBlur) ✓ TypeScript ✓ ESLint ✓ Build ✓ (1.51 kB, 88.8 kB total). README.md updated with validation docs. Dev server ✓ Simple, efficient, ready for QA.</p>
+            <p class="card-description">✅ QA PASSED: Real-time validation working. Character limits enforced (App Name: 3-50, Others: 50-500). Color-coded counters operational (gray/yellow/green/red). Error states ✓ Submit button states ✓ Touch-based validation ✓ TypeScript ✓ ESLint ✓ Build ✓ Docker ✓ Documentation ✓ Ready for deployment.</p>
             <div class="card-footer">
               <span class="card-assignee">[Syntax]</span>
-              <span class="card-date">2025-10-21</span>
+              <span class="card-date">2025-10-08</span>
             </div>
           </div>
 
@@ -416,24 +428,12 @@
               <span class="card-priority priority-high">●</span>
             </div>
             <h4 class="card-title">Sprint 3: 4-Field Dark Form UI</h4>
-            <p class="card-description">✅ COMPLETED: PRDForm component created (4 fields: App Name, Description, Pain Point, Solution). Dark inputs (#2a2a2a), character counters, crimson focus states. Integrated in home page. TypeScript ✓ ESLint ✓ Build ✓ (963 B, 88.2 kB total). README.md updated with Forms section. Dev server ✓ Simple, clean, ready for QA.</p>
+            <p class="card-description">✅ QA PASSED: PRDForm component working. 4 fields rendering correctly. Dark theme (#2a2a2a inputs, #89023e focus). Character counters operational. Responsive design ✓ TypeScript ✓ ESLint ✓ Build ✓ Docker ✓ Documentation ✓ Ready for deployment.</p>
             <div class="card-footer">
               <span class="card-assignee">[Aesthetica]</span>
-              <span class="card-date">2025-10-21</span>
+              <span class="card-date">2025-10-08</span>
             </div>
           </div>
-          <!-- KANBAN_QA_END -->
-        </div>
-      </div>
-
-      <!-- Staged Column -->
-      <div class="kanban-column">
-        <div class="column-header">
-          <div class="column-title">Staged</div>
-          <div class="column-count">0 tasks</div>
-        </div>
-        <div class="column-content">
-          <!-- KANBAN_STAGED_START -->
           <!-- KANBAN_STAGED_END -->
         </div>
       </div>
