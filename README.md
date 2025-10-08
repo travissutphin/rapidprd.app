@@ -53,7 +53,11 @@ A mobile-first, dark-themed PRD generator featuring:
 │   ├── AIPRD-UserJourney.md # User flow and steps
 │   └── kanban.html          # Development kanban board
 ├── /components              # React components (to be created)
-├── /lib                     # Utility functions (to be created)
+├── /lib                     # Security and utility functions
+│   ├── security.ts          # Input sanitization and validation
+│   ├── env.ts               # Environment variable validation
+│   └── README.md            # Library documentation
+├── middleware.ts            # Security headers for all routes
 ├── package.json             # Dependencies and scripts
 ├── tsconfig.json            # TypeScript configuration
 ├── next.config.mjs          # Next.js configuration (standalone output)
@@ -234,6 +238,72 @@ ANTHROPIC_API_KEY=your_api_key_here
 ```
 
 **Security Note:** Never commit `.env` files. Use `.env.example` as a template.
+
+---
+
+## 🔒 Security
+
+### Input Sanitization
+
+All user input is sanitized using the security utilities in `lib/security.ts`:
+
+```typescript
+import { sanitizeInput, validateTextField } from '@/lib/security';
+
+// Remove HTML tags and dangerous characters
+const clean = sanitizeInput(userInput);
+
+// Validate with length constraints
+const result = validateTextField(userInput, 50, 500);
+if (!result.valid) {
+  console.error(result.error);
+}
+```
+
+**Functions:**
+- `sanitizeInput(input)` - Remove HTML tags, script/style content, prevent XSS
+- `validateTextField(input, min, max)` - Validate text with length constraints
+- `validateEnvVar(name)` - Ensure required environment variables exist
+- `getEnvVar(name, fallback?)` - Safely get environment variable with fallback
+
+### Environment Variable Validation
+
+Environment variables are validated at startup using `lib/env.ts`:
+
+```typescript
+import { env, isProduction } from '@/lib/env';
+
+// Access validated environment variables
+const apiKey = env.ANTHROPIC_API_KEY;
+
+// Check environment
+if (isProduction) {
+  // Production-only code
+}
+```
+
+**Fail-Fast Approach:** In production, missing required variables (like `ANTHROPIC_API_KEY`) will throw an error at startup rather than failing silently.
+
+### Security Headers
+
+Middleware (`middleware.ts`) adds security headers to all responses:
+
+- **X-XSS-Protection:** `1; mode=block` - Prevent XSS attacks
+- **X-Frame-Options:** `DENY` - Prevent clickjacking
+- **X-Content-Type-Options:** `nosniff` - Prevent MIME sniffing
+- **Referrer-Policy:** `strict-origin-when-cross-origin` - Control referrer information
+- **Content-Security-Policy:** Strict CSP allowing only same-origin and Google Fonts
+- **Permissions-Policy:** Restrict camera, microphone, geolocation access
+
+### Security Best Practices
+
+1. **Input Sanitization** - All user input is sanitized before processing
+2. **Environment Validation** - Required variables are validated at startup
+3. **Fail Fast** - Missing required config causes immediate error
+4. **Security Headers** - All responses include security headers
+5. **Simple & Robust** - No overengineering, just essentials
+
+**Documentation:** See `lib/README.md` for detailed security utility documentation and examples.
 
 ---
 
