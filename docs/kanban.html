@@ -483,43 +483,29 @@
       <div class="kanban-column">
         <div class="column-header">
           <div class="column-title">Staged</div>
-          <div class="column-count">5 tasks</div>
+          <div class="column-count">0 tasks</div>
         </div>
         <div class="column-content">
           <!-- KANBAN_STAGED_START -->
-          <div class="card" data-id="001" data-priority="high">
-            <div class="card-header">
-              <span class="card-id">#001</span>
-              <span class="card-priority priority-high">●</span>
-            </div>
-            <h4 class="card-title">Sprint 1: Git Repository & Project Initialization</h4>
-            <p class="card-description">✅ QA PASSED: All checks passed by [Verity]. Repository configured, branches created, gitops framework complete. CLAUDE.md secured in .gitignore. Ready for deployment.</p>
-            <div class="card-footer">
-              <span class="card-assignee">[Flow]</span>
-              <span class="card-date">2025-10-07</span>
-            </div>
-          </div>
+          <!-- KANBAN_STAGED_END -->
+        </div>
+      </div>
 
-          <div class="card" data-id="002" data-priority="high">
+      <!-- Live Column -->
+      <div class="kanban-column">
+        <div class="column-header">
+          <div class="column-title">Live</div>
+          <div class="column-count">5 tasks</div>
+        </div>
+        <div class="column-content">
+          <!-- KANBAN_LIVE_START -->
+          <div class="card" data-id="005" data-priority="high">
             <div class="card-header">
-              <span class="card-id">#002</span>
+              <span class="card-id">#005</span>
               <span class="card-priority priority-high">●</span>
             </div>
-            <h4 class="card-title">Sprint 1: Next.js 14 + TypeScript Setup</h4>
-            <p class="card-description">✅ QA PASSED: TypeScript ✓ ESLint ✓ Build ✓ (87.2 kB). App Router configured. Inter font loaded. Dev server running localhost:3000. All checks passed by [Verity]. Ready for deployment.</p>
-            <div class="card-footer">
-              <span class="card-assignee">[Flow]</span>
-              <span class="card-date">2025-10-07</span>
-            </div>
-          </div>
-
-          <div class="card" data-id="003" data-priority="high">
-            <div class="card-header">
-              <span class="card-id">#003</span>
-              <span class="card-priority priority-high">●</span>
-            </div>
-            <h4 class="card-title">Sprint 1: TailwindCSS Dark Theme Configuration</h4>
-            <p class="card-description">✅ QA PASSED: All PRD colors ✓ (black, crimson, dark, text, success/error/warning). Inter font ✓ Shadows ✓ Build ✓ All checks passed by [Verity]. Ready for deployment.</p>
+            <h4 class="card-title">Sprint 1: Security & Environment Variables</h4>
+            <p class="card-description">✅ DEPLOYED: Security utilities (XSS prevention, validation). Environment validation (fail-fast). Security headers middleware (26.7 kB). Documentation complete. Commit cda7e57 pushed to develop.</p>
             <div class="card-footer">
               <span class="card-assignee">[Flow]</span>
               <span class="card-date">2025-10-07</span>
@@ -532,37 +518,51 @@
               <span class="card-priority priority-high">●</span>
             </div>
             <h4 class="card-title">Sprint 1: Docker Environment Setup</h4>
-            <p class="card-description">✅ QA PASSED: Multi-stage Dockerfile ✓ Alpine + non-root user ✓ docker-compose.yml ✓ Standalone build ✓ (server.js). Docker 28.4.0 ✓ All checks passed by [Verity]. Ready for deployment.</p>
+            <p class="card-description">✅ DEPLOYED: Multi-stage Dockerfile. Alpine + non-root user. docker-compose.yml (dev+prod). Standalone build. Docker 28.4.0 verified. Live on develop branch.</p>
             <div class="card-footer">
               <span class="card-assignee">[Flow]</span>
               <span class="card-date">2025-10-07</span>
             </div>
           </div>
 
-          <div class="card" data-id="005" data-priority="high">
+          <div class="card" data-id="003" data-priority="high">
             <div class="card-header">
-              <span class="card-id">#005</span>
+              <span class="card-id">#003</span>
               <span class="card-priority priority-high">●</span>
             </div>
-            <h4 class="card-title">Sprint 1: Security & Environment Variables</h4>
-            <p class="card-description">✅ QA PASSED: Security utilities ✓ (XSS prevention, validation). Environment validation ✓ (fail-fast). Security headers middleware ✓ (26.7 kB). Documentation ✓ All checks passed by [Verity]. Ready for deployment.</p>
+            <h4 class="card-title">Sprint 1: TailwindCSS Dark Theme Configuration</h4>
+            <p class="card-description">✅ DEPLOYED: All PRD colors (black, crimson, dark, text, success/error/warning). Inter font. Shadows. Build successful. Live on develop branch.</p>
             <div class="card-footer">
               <span class="card-assignee">[Flow]</span>
               <span class="card-date">2025-10-07</span>
             </div>
           </div>
-          <!-- KANBAN_STAGED_END -->
-        </div>
-      </div>
 
-      <!-- Live Column -->
-      <div class="kanban-column">
-        <div class="column-header">
-          <div class="column-title">Live</div>
-          <div class="column-count">0 tasks</div>
-        </div>
-        <div class="column-content">
-          <!-- KANBAN_LIVE_START -->
+          <div class="card" data-id="002" data-priority="high">
+            <div class="card-header">
+              <span class="card-id">#002</span>
+              <span class="card-priority priority-high">●</span>
+            </div>
+            <h4 class="card-title">Sprint 1: Next.js 14 + TypeScript Setup</h4>
+            <p class="card-description">✅ DEPLOYED: TypeScript ✓ ESLint ✓ Build ✓ (87.2 kB). App Router configured. Inter font loaded. Dev server running localhost:3000. Live on develop branch.</p>
+            <div class="card-footer">
+              <span class="card-assignee">[Flow]</span>
+              <span class="card-date">2025-10-07</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="001" data-priority="high">
+            <div class="card-header">
+              <span class="card-id">#001</span>
+              <span class="card-priority priority-high">●</span>
+            </div>
+            <h4 class="card-title">Sprint 1: Git Repository & Project Initialization</h4>
+            <p class="card-description">✅ DEPLOYED: Repository configured. Branches created (main/develop). Gitops framework complete. CLAUDE.md secured in .gitignore. Live on develop branch.</p>
+            <div class="card-footer">
+              <span class="card-assignee">[Flow]</span>
+              <span class="card-date">2025-10-07</span>
+            </div>
+          </div>
           <!-- KANBAN_LIVE_END -->
         </div>
       </div>
