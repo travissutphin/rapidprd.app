@@ -49,6 +49,12 @@ const config: Config = {
         crimson: "0 4px 12px rgba(137, 2, 62, 0.3)",
         "crimson-lg": "0 8px 24px rgba(137, 2, 62, 0.4)",
       },
+      spacing: {
+        safe: "env(safe-area-inset-bottom, 0px)",
+      },
+      padding: {
+        safe: "env(safe-area-inset-bottom, 0px)",
+      },
     },
   },
   plugins: [],

@@ -1,6 +1,6 @@
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black text-white flex items-center justify-center p-4">
+    <main className="min-h-screen bg-black text-white flex items-center justify-center p-4 pb-24 sm:pb-4 sm:pl-20">
       <div className="text-center max-w-2xl">
         <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-crimson to-crimson-light bg-clip-text text-transparent">
           PRD Generator
