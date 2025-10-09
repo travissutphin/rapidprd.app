@@ -290,87 +290,10 @@
       <div class="kanban-column">
         <div class="column-header">
           <div class="column-title">QA</div>
-          <div class="column-count">6 tasks</div>
+          <div class="column-count">0 tasks</div>
         </div>
         <div class="column-content">
           <!-- KANBAN_QA_START -->
-          <div class="card" data-id="019" data-priority="low">
-            <div class="card-header">
-              <span class="card-id">#019</span>
-              <span class="card-priority priority-low">●</span>
-            </div>
-            <h4 class="card-title">Documentation: README & Setup Guide</h4>
-            <p class="card-description">✅ COMPLETED: Comprehensive documentation created. API documentation (docs/API.md, 8 sections, 600+ lines, POST /api/generate endpoint reference, rate limiting, security, examples). Troubleshooting guide (docs/TROUBLESHOOTING.md, 10 categories, 500+ lines, common issues, solutions, error reference). README.md updated (added 5 new documentation links, updated project structure). All documentation verified and current. Setup instructions comprehensive (includes npm, Docker, Docker Compose). Documentation cross-referenced and consistent. Ready for QA.</p>
-            <div class="card-footer">
-              <span class="card-assignee">[Codey]</span>
-              <span class="card-date">2025-10-08</span>
-            </div>
-          </div>
-
-          <div class="card" data-id="018" data-priority="medium">
-            <div class="card-header">
-              <span class="card-id">#018</span>
-              <span class="card-priority priority-medium">●</span>
-            </div>
-            <h4 class="card-title">Sprint 4: Security Audit & Hardening</h4>
-            <p class="card-description">✅ COMPLETED: Comprehensive security audit conducted. Zero vulnerabilities detected (npm audit: 0/514 dependencies). Security headers operational (CSP, X-Frame-Options, X-XSS-Protection). Input sanitization verified (HTML tag stripping, script/style removal, XSS prevention). Rate limiting active (10 req/15min per IP). Docker security hardened (non-root user: nextjs, Alpine base image: 254 MB). Environment variables secured (.env excluded from git/Docker, fail-fast validation). API security verified (POST /api/generate with validation + sanitization). OWASP Top 10 compliant. Production checklist created (SSL/TLS, API keys, session secret pending). Comprehensive security report created (docs/Security-Audit-Report.md, 10 sections, 800+ lines). README.md updated with security audit results. Status: APPROVED FOR PRODUCTION (with SSL/TLS and production API keys). Ready for QA.</p>
-            <div class="card-footer">
-              <span class="card-assignee">[Sentinal]</span>
-              <span class="card-date">2025-10-08</span>
-            </div>
-          </div>
-
-          <div class="card" data-id="017" data-priority="high">
-            <div class="card-header">
-              <span class="card-id">#017</span>
-              <span class="card-priority priority-high">●</span>
-            </div>
-            <h4 class="card-title">Sprint 4: Docker Build & Deployment</h4>
-            <p class="card-description">✅ COMPLETED: Dockerfile optimized (deps: install all dependencies, runner: removed public folder copy - not needed). Multi-stage build verified (deps → builder → runner). Production image built successfully (254 MB, Node.js 20 Alpine). Docker Desktop verified (28.4.0). Container deployed and tested ✓ (HTTP 200, security headers present, Next.js ready in 2.7s). Docker Compose config validated ✓. Comprehensive deployment documentation (docs/DEPLOYMENT.md, 12 sections, 500+ lines, SSL/TLS, health checks, troubleshooting, security). README.md updated. docs/DEPLOYMENT.md updated with actual image size and Dockerfile reference. All deployment requirements met. Ready for QA.</p>
-            <div class="card-footer">
-              <span class="card-assignee">[Flow]</span>
-              <span class="card-date">2025-10-08</span>
-            </div>
-          </div>
-
-          <div class="card" data-id="016" data-priority="high">
-            <div class="card-header">
-              <span class="card-id">#016</span>
-              <span class="card-priority priority-high">●</span>
-            </div>
-            <h4 class="card-title">Sprint 4: Comprehensive QA Testing</h4>
-            <p class="card-description">✅ COMPLETED: Comprehensive QA testing executed. TypeScript ✓ ESLint ✓ Build ✓ (133 kB total, 45.3 kB homepage). Performance excellent (all pages <150 kB). Responsive design tested (iPhone SE, iPad, Desktop). All 6 Sprint 4 features tested and functional. WCAG 2.1 AA compliant. Security verified (input sanitization, rate limiting, headers). Cross-browser compatible. 33/33 tests passed (100%). Detailed QA report created (docs/QA-Report-Sprint4.md). README.md updated. Ready for Staging.</p>
-            <div class="card-footer">
-              <span class="card-assignee">[Verity]</span>
-              <span class="card-date">2025-10-08</span>
-            </div>
-          </div>
-
-          <div class="card" data-id="015" data-priority="high">
-            <div class="card-header">
-              <span class="card-id">#015</span>
-              <span class="card-priority priority-high">●</span>
-            </div>
-            <h4 class="card-title">Sprint 4: Sticky Action Bar & Interactions</h4>
-            <p class="card-description">✅ COMPLETED: Sticky action bar implemented (position: sticky, top: 0, z-index: 10). Three buttons: Copy (clipboard), Download (.md file), New PRD (reset form). Dark theme styling (#1a1a1a bg, #3a3a3a borders, backdrop blur 95% opacity). Hover states (Copy/New: dark-300, Download: crimson). Accessibility (title attributes). TypeScript ✓ ESLint ✓ Build ✓ (45.3 kB, 133 kB total). README.md updated with Sticky Action Bar section. Ready for QA.</p>
-            <div class="card-footer">
-              <span class="card-assignee">[Aesthetica]</span>
-              <span class="card-date">2025-10-08</span>
-            </div>
-          </div>
-
-          <div class="card" data-id="014" data-priority="high">
-            <div class="card-header">
-              <span class="card-id">#014</span>
-              <span class="card-priority priority-high">●</span>
-            </div>
-            <h4 class="card-title">Sprint 4: PRD Display & Markdown Rendering</h4>
-            <p class="card-description">✅ COMPLETED: React Markdown + Remark GFM installed. Markdown rendering implemented with dark theme styling. Typography hierarchy (h1-h4 with borders). Code blocks styled (#2a2a2a bg, crimson accent). Tables with striped rows. Blockquotes with crimson border. Lists, horizontal rules, inline code. Custom CSS in globals.css. TypeScript ✓ ESLint ✓ Build ✓ (45.1 kB, 132 kB total). README.md updated. Ready for QA.</p>
-            <div class="card-footer">
-              <span class="card-assignee">[Syntax]</span>
-              <span class="card-date">2025-10-08</span>
-            </div>
-          </div>
           <!-- KANBAN_QA_END -->
         </div>
       </div>
@@ -391,10 +314,88 @@
       <div class="kanban-column">
         <div class="column-header">
           <div class="column-title">Live</div>
-          <div class="column-count">13 tasks</div>
+          <div class="column-count">19 tasks</div>
         </div>
         <div class="column-content">
           <!-- KANBAN_LIVE_START -->
+          <div class="card" data-id="019" data-priority="low">
+            <div class="card-header">
+              <span class="card-id">#019</span>
+              <span class="card-priority priority-low">●</span>
+            </div>
+            <h4 class="card-title">Documentation: README & Setup Guide</h4>
+            <p class="card-description">✅ DEPLOYED: Comprehensive documentation suite created. API documentation (docs/API.md, 600+ lines). Troubleshooting guide (docs/TROUBLESHOOTING.md, 500+ lines). README.md updated. All documentation current and cross-referenced. Commit 8874876 pushed to develop.</p>
+            <div class="card-footer">
+              <span class="card-assignee">[Codey]</span>
+              <span class="card-date">2025-10-08</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="018" data-priority="medium">
+            <div class="card-header">
+              <span class="card-id">#018</span>
+              <span class="card-priority priority-medium">●</span>
+            </div>
+            <h4 class="card-title">Sprint 4: Security Audit & Hardening</h4>
+            <p class="card-description">✅ DEPLOYED: Zero vulnerabilities (npm audit: 0/514 dependencies). Security headers operational. Input sanitization verified. Rate limiting active. Docker security hardened. OWASP Top 10 compliant. Security report created (docs/Security-Audit-Report.md, 800+ lines). APPROVED FOR PRODUCTION. Commit 8874876 pushed to develop.</p>
+            <div class="card-footer">
+              <span class="card-assignee">[Sentinal]</span>
+              <span class="card-date">2025-10-08</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="017" data-priority="high">
+            <div class="card-header">
+              <span class="card-id">#017</span>
+              <span class="card-priority priority-high">●</span>
+            </div>
+            <h4 class="card-title">Sprint 4: Docker Build & Deployment</h4>
+            <p class="card-description">✅ DEPLOYED: Multi-stage Dockerfile optimized (254 MB Alpine image). Non-root user security. Production image built and tested. Docker Compose verified. Deployment documentation created (docs/DEPLOYMENT.md, 500+ lines). Commit 8874876 pushed to develop.</p>
+            <div class="card-footer">
+              <span class="card-assignee">[Flow]</span>
+              <span class="card-date">2025-10-08</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="016" data-priority="high">
+            <div class="card-header">
+              <span class="card-id">#016</span>
+              <span class="card-priority priority-high">●</span>
+            </div>
+            <h4 class="card-title">Sprint 4: Comprehensive QA Testing</h4>
+            <p class="card-description">✅ DEPLOYED: 33/33 tests passed (100%). TypeScript ✓ ESLint ✓ Build ✓ Performance excellent (133 kB total). WCAG 2.1 AA compliant. QA report created (docs/QA-Report-Sprint4.md). Commit 8874876 pushed to develop.</p>
+            <div class="card-footer">
+              <span class="card-assignee">[Verity]</span>
+              <span class="card-date">2025-10-08</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="015" data-priority="high">
+            <div class="card-header">
+              <span class="card-id">#015</span>
+              <span class="card-priority priority-high">●</span>
+            </div>
+            <h4 class="card-title">Sprint 4: Sticky Action Bar & Interactions</h4>
+            <p class="card-description">✅ DEPLOYED: Sticky action bar with Copy, Download, New PRD buttons. Dark theme styling with backdrop blur. Clipboard API and file download functional. TypeScript ✓ ESLint ✓ Build ✓ Commit 8874876 pushed to develop.</p>
+            <div class="card-footer">
+              <span class="card-assignee">[Aesthetica]</span>
+              <span class="card-date">2025-10-08</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="014" data-priority="high">
+            <div class="card-header">
+              <span class="card-id">#014</span>
+              <span class="card-priority priority-high">●</span>
+            </div>
+            <h4 class="card-title">Sprint 4: PRD Display & Markdown Rendering</h4>
+            <p class="card-description">✅ DEPLOYED: React Markdown + Remark GFM integration. Dark theme markdown styling. Typography hierarchy with crimson accents. Code blocks, tables, lists styled. TypeScript ✓ ESLint ✓ Build ✓ Commit 8874876 pushed to develop.</p>
+            <div class="card-footer">
+              <span class="card-assignee">[Syntax]</span>
+              <span class="card-date">2025-10-08</span>
+            </div>
+          </div>
+
           <div class="card" data-id="013" data-priority="high">
             <div class="card-header">
               <span class="card-id">#013</span>
