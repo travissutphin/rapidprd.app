@@ -77,7 +77,7 @@ docker ps
 
 ```bash
 git clone https://github.com/travissutphin/rapidprd.app.git
-cd AIPRD
+cd rapidPRD.app
 ```
 
 ### 2. Create Environment File

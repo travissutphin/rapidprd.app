@@ -2,6 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom Animations */
+@keyframes gradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 3s ease infinite;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out;
+}
+
 :root {
   --bg-primary: #000000;
   --bg-secondary: #1a1a1a;
@@ -10,8 +40,8 @@
   --text-primary: #ffffff;
   --text-secondary: #e0e0e0;
   --text-tertiary: #8a8a8a;
-  --accent: #89023e;
-  --accent-hover: #a00344;
+  --accent: #ac0234;
+  --accent-hover: #d4045c;
 }
 
 * {

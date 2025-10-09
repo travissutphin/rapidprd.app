@@ -13,7 +13,7 @@ Transform app ideas into comprehensive, developer-ready PRDs in seconds.
 **Product Owner:** Travis Sutphin
 
 A mobile-first, dark-themed PRD generator featuring:
-- 🎨 Premium black (#000000) background with deep crimson (#89023e) accents
+- 🎨 Premium black (#000000) background with deep crimson (#ac0234) accents
 - 📱 iOS-style bottom navigation (mobile)
 - 🖥️ Elegant slide-out menu (desktop)
 - 🤖 AI-powered PRD generation via Claude API
@@ -45,7 +45,7 @@ A mobile-first, dark-themed PRD generator featuring:
 ## 📋 Project Structure
 
 ```
-/AIPRD
+/rapidPRD.app
 ├── /app                     # Next.js 14 app directory
 │   ├── layout.tsx           # Root layout with Inter font
 │   ├── page.tsx             # Home page
@@ -100,8 +100,8 @@ A mobile-first, dark-themed PRD generator featuring:
 | Primary Text | `text-white` / `text-text-primary` | `#FFFFFF` |
 | Secondary Text | `text-text-secondary` | `#e0e0e0` |
 | Tertiary Text | `text-text-tertiary` | `#8a8a8a` |
-| Accent | `bg-crimson` / `text-crimson` | `#89023e` |
-| Accent Hover | `hover:bg-crimson-light` | `#a00344` |
+| Accent | `bg-crimson` / `text-crimson` | `#ac0234` |
+| Accent Hover | `hover:bg-crimson-light` | `#d4045c` |
 | Success | `text-success` / `bg-success` | `#10b981` |
 | Error | `text-error` / `bg-error` | `#ef4444` |
 | Warning | `text-warning` / `bg-warning` | `#f59e0b` |
@@ -139,7 +139,7 @@ Fixed bottom navigation bar for mobile devices (< 640px):
 - Background: `#1a1a1a` with 95% opacity + backdrop blur
 - Border-top: 1px solid `#3a3a3a`
 - Height: 80px (includes safe area)
-- Active state: Crimson (#89023e)
+- Active state: Crimson (#ac0234)
 - Inactive state: Tertiary text (#8a8a8a)
 
 **Usage:**
@@ -194,7 +194,7 @@ Both navigation components are designed for accessibility and meet **WCAG 2.1 AA
 **Mobile Navigation (MobileNav.tsx):**
 - ✅ **Touch Targets:** 48x48px minimum (exceeds WCAG AAA 44x44px requirement)
 - ✅ **Semantic HTML:** `<nav>` and `<Link>` elements with implicit ARIA roles
-- ✅ **Visual Indicators:** Crimson active state (#89023e) with sufficient contrast
+- ✅ **Visual Indicators:** Crimson active state (#ac0234) with sufficient contrast
 - ✅ **Safe Area Support:** iPhone notch and home indicator padding
 
 **Desktop Navigation (DesktopNav.tsx):**
@@ -224,7 +224,7 @@ Interactive form for generating Product Requirements Documents:
 - Error states with validation messages
 - Submit button disabled until all fields valid
 - Dark theme inputs (#2a2a2a background)
-- Crimson focus states (#89023e)
+- Crimson focus states (#ac0234)
 - Responsive design
 
 **Fields:**
@@ -392,7 +392,7 @@ The application includes the following routes, all with dark theme styling:
 ```bash
 # Clone the repository
 git clone https://github.com/travissutphin/rapidprd.app.git
-cd AIPRD
+cd rapidPRD.app
 
 # Checkout develop branch for development
 git checkout develop
@@ -503,14 +503,15 @@ cp .env.example .env
 ## 📖 Documentation
 
 ### Key Documents
-1. **[Product Requirements Document](docs/AIPRD-PRD.md)** - Complete PRD with all features, design system, and specifications
-2. **[User Journey](docs/AIPRD-UserJourney.md)** - Complete user flow and interaction patterns
-3. **[Kanban Board](docs/kanban.html)** - Live development tracking
-4. **[API Documentation](docs/API.md)** - Complete API reference for POST /api/generate endpoint
-5. **[Deployment Guide](docs/DEPLOYMENT.md)** - Docker deployment, SSL/TLS, production checklist
-6. **[Security Audit Report](docs/Security-Audit-Report.md)** - Security assessment and hardening
-7. **[Troubleshooting Guide](docs/TROUBLESHOOTING.md)** - Common issues and solutions
-8. **[QA Report](docs/QA-Report-Sprint4.md)** - Sprint 4 comprehensive testing results
+1. **[Product Requirements Document](docs/rapidPRD-PRD.md)** - Complete PRD with all features, design system, and specifications
+2. **[User Journey](docs/rapidPRD-UserJourney.md)** - Complete user flow and interaction patterns
+3. **[Brand Guide](docs/BRAND-GUIDE.md)** - Color system, typography, logo usage for web app
+4. **[Kanban Board](docs/kanban.html)** - Live development tracking
+5. **[API Documentation](docs/API.md)** - Complete API reference for POST /api/generate endpoint
+6. **[Deployment Guide](docs/DEPLOYMENT.md)** - Docker deployment, SSL/TLS, production checklist
+7. **[Security Audit Report](docs/Security-Audit-Report.md)** - Security assessment and hardening
+8. **[Troubleshooting Guide](docs/TROUBLESHOOTING.md)** - Common issues and solutions
+9. **[QA Report](docs/QA-Report-Sprint4.md)** - Sprint 4 comprehensive testing results
 
 ### Branching Strategy
 - `main` - Production-ready code

@@ -59,7 +59,7 @@ hotfix/[issue-number]-[short-description]
 ```bash
 # Clone repository (first time only)
 git clone https://github.com/travissutphin/rapidprd.app.git
-cd AIPRD
+cd rapidPRD.app
 
 # Start from develop
 git checkout develop
@@ -358,7 +358,7 @@ docker-compose -f docker-compose.prod.yml up -d
 ## 📋 Checklist for New Contributors
 
 - [ ] Read README.md
-- [ ] Read AIPRD-PRD.md
+- [ ] Read rapidPRD-PRD.md
 - [ ] Review kanban board
 - [ ] Set up development environment
 - [ ] Understand branching strategy

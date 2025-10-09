@@ -266,10 +266,139 @@
       <div class="kanban-column">
         <div class="column-header">
           <div class="column-title">Backlog</div>
-          <div class="column-count">0 tasks</div>
+          <div class="column-count">10 tasks</div>
         </div>
         <div class="column-content">
           <!-- KANBAN_BACKLOG_START -->
+          <div class="card" data-id="020" data-priority="high">
+            <div class="card-header">
+              <span class="card-id">#020</span>
+              <span class="card-priority priority-high">●</span>
+            </div>
+            <h4 class="card-title">Sprint 5: Obtain Anthropic API Key</h4>
+            <p class="card-description">Obtain production API key from Anthropic console (https://console.anthropic.com). Configure API key in .env file. Verify key is excluded from git (.env in .gitignore). Document key rotation policy. Test key authentication.</p>
+            <div class="card-footer">
+              <span class="card-assignee">[Travis]</span>
+              <span class="card-date">TBD</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="021" data-priority="high">
+            <div class="card-header">
+              <span class="card-id">#021</span>
+              <span class="card-priority priority-high">●</span>
+            </div>
+            <h4 class="card-title">Sprint 5: Install Anthropic SDK</h4>
+            <p class="card-description">Install @anthropic-ai/sdk package. Update package.json and package-lock.json. Verify TypeScript types. Test SDK import. Update Docker build if needed. Run npm audit for vulnerabilities.</p>
+            <div class="card-footer">
+              <span class="card-assignee">[Syntax]</span>
+              <span class="card-date">TBD</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="022" data-priority="high">
+            <div class="card-header">
+              <span class="card-id">#022</span>
+              <span class="card-priority priority-high">●</span>
+            </div>
+            <h4 class="card-title">Sprint 5: Create Claude AI Integration Module</h4>
+            <p class="card-description">Create /lib/claude.ts module. Implement Anthropic client initialization. Design PRD generation prompt template. Add error handling for API failures. Implement retry logic. Add TypeScript interfaces for Claude responses. Document module usage.</p>
+            <div class="card-footer">
+              <span class="card-assignee">[Syntax]</span>
+              <span class="card-date">TBD</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="023" data-priority="high">
+            <div class="card-header">
+              <span class="card-id">#023</span>
+              <span class="card-priority priority-high">●</span>
+            </div>
+            <h4 class="card-title">Sprint 5: Implement Claude PRD Generation</h4>
+            <p class="card-description">Create generatePRDWithClaude() function. Implement buildPRDPrompt() for optimal prompt engineering. Configure model (claude-3-5-sonnet-20241022). Set max_tokens (4096). Add temperature/top_p settings. Implement streaming response (optional). Handle API rate limits.</p>
+            <div class="card-footer">
+              <span class="card-assignee">[Syntax]</span>
+              <span class="card-date">TBD</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="024" data-priority="high">
+            <div class="card-header">
+              <span class="card-id">#024</span>
+              <span class="card-priority priority-high">●</span>
+            </div>
+            <h4 class="card-title">Sprint 5: Update API Route with Claude</h4>
+            <p class="card-description">Replace generatePlaceholderPRD() with generatePRDWithClaude() in /app/api/generate/route.ts. Update error handling for Claude API errors. Add timeout handling (30s max). Implement graceful degradation if Claude API fails. Update API documentation. Test all edge cases.</p>
+            <div class="card-footer">
+              <span class="card-assignee">[Syntax]</span>
+              <span class="card-date">TBD</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="025" data-priority="medium">
+            <div class="card-header">
+              <span class="card-id">#025</span>
+              <span class="card-priority priority-medium">●</span>
+            </div>
+            <h4 class="card-title">Sprint 5: Claude Integration Testing</h4>
+            <p class="card-description">Test PRD generation with various inputs. Verify markdown formatting. Test rate limiting (10 req/15min). Test error scenarios (invalid API key, timeout, API down). Load testing (100+ requests). Verify response quality. Document test results.</p>
+            <div class="card-footer">
+              <span class="card-assignee">[Verity]</span>
+              <span class="card-date">TBD</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="026" data-priority="medium">
+            <div class="card-header">
+              <span class="card-id">#026</span>
+              <span class="card-priority priority-medium">●</span>
+            </div>
+            <h4 class="card-title">Sprint 5: UI Loading States Enhancement</h4>
+            <p class="card-description">Update PRDForm with Claude-specific loading messages. Add progress indicators (Analyzing..., Generating sections..., Finalizing...). Implement estimated time remaining. Add cancel request button. Update error messages for Claude failures. Enhance user feedback during generation.</p>
+            <div class="card-footer">
+              <span class="card-assignee">[Aesthetica]</span>
+              <span class="card-date">TBD</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="027" data-priority="low">
+            <div class="card-header">
+              <span class="card-id">#027</span>
+              <span class="card-priority priority-low">●</span>
+            </div>
+            <h4 class="card-title">Sprint 5: Usage Monitoring & Cost Tracking</h4>
+            <p class="card-description">Implement API usage logging. Track token consumption per request. Create cost estimation dashboard. Set up budget alerts. Monitor error rates. Implement usage analytics. Document cost optimization strategies. Create monthly usage reports.</p>
+            <div class="card-footer">
+              <span class="card-assignee">[Flow]</span>
+              <span class="card-date">TBD</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="028" data-priority="low">
+            <div class="card-header">
+              <span class="card-id">#028</span>
+              <span class="card-priority priority-low">●</span>
+            </div>
+            <h4 class="card-title">Sprint 5: Security Audit - Claude Integration</h4>
+            <p class="card-description">Audit API key storage and handling. Verify no API key exposure in logs/errors. Review rate limiting effectiveness. Test input sanitization with Claude prompts. Check for prompt injection vulnerabilities. Verify OWASP compliance. Document security measures. Create security checklist.</p>
+            <div class="card-footer">
+              <span class="card-assignee">[Sentinal]</span>
+              <span class="card-date">TBD</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="029" data-priority="low">
+            <div class="card-header">
+              <span class="card-id">#029</span>
+              <span class="card-priority priority-low">●</span>
+            </div>
+            <h4 class="card-title">Sprint 5: Documentation - Claude Integration</h4>
+            <p class="card-description">Update docs/API.md with Claude integration details. Document prompt engineering approach. Create troubleshooting guide for Claude errors. Update README.md with AI features. Document cost considerations. Create developer guide for Claude module. Update .env.example with ANTHROPIC_API_KEY.</p>
+            <div class="card-footer">
+              <span class="card-assignee">[Codey]</span>
+              <span class="card-date">TBD</span>
+            </div>
+          </div>
           <!-- KANBAN_BACKLOG_END -->
         </div>
       </div>
