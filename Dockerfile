@@ -5,9 +5,9 @@
 FROM node:20-alpine AS deps
 WORKDIR /app
 
-# Install dependencies based on package files
+# Install ALL dependencies (including devDependencies for build)
 COPY package.json package-lock.json ./
-RUN npm ci --only=production
+RUN npm ci
 
 # Stage 2: Builder
 FROM node:20-alpine AS builder
@@ -17,7 +17,7 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Build Next.js app
+# Build Next.js app (standalone output)
 RUN npm run build
 
 # Stage 3: Runner (Production)
@@ -32,7 +32,7 @@ RUN addgroup --system --gid 1001 nodejs && \
     adduser --system --uid 1001 nextjs
 
 # Copy necessary files from builder
-COPY --from=builder /app/public ./public
+# Note: public folder not needed for this app (no static assets)
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 

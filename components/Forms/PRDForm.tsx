@@ -1,6 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 /**
  * 4-Field Dark PRD Form with Validation
@@ -291,36 +293,67 @@ export default function PRDForm() {
 
       {/* Generated PRD Display */}
       {generatedPRD && (
-        <div className="mt-8 p-6 bg-dark-100 border border-dark-300 rounded-lg">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-semibold text-white">Generated PRD</h2>
-            <div className="flex gap-2">
-              <button
-                onClick={() => navigator.clipboard.writeText(generatedPRD)}
-                className="px-4 py-2 bg-dark-200 hover:bg-dark-300 text-text-secondary hover:text-white border border-dark-300 rounded-lg transition-colors text-sm"
-              >
-                Copy to Clipboard
-              </button>
-              <button
-                onClick={() => {
-                  const blob = new Blob([generatedPRD], { type: 'text/markdown' });
-                  const url = URL.createObjectURL(blob);
-                  const a = document.createElement('a');
-                  a.href = url;
-                  a.download = `${formData.appName.toLowerCase().replace(/\s+/g, '-')}-prd.md`;
-                  a.click();
-                  URL.revokeObjectURL(url);
-                }}
-                className="px-4 py-2 bg-crimson hover:bg-crimson-light text-white rounded-lg transition-colors text-sm"
-              >
-                Download Markdown
-              </button>
+        <div className="mt-8 relative">
+          {/* Sticky Action Bar */}
+          <div className="sticky top-0 z-10 bg-dark-100 border border-dark-300 rounded-t-lg p-4 backdrop-blur-sm bg-opacity-95">
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-semibold text-white">Generated PRD</h2>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => navigator.clipboard.writeText(generatedPRD)}
+                  className="px-4 py-2 bg-dark-200 hover:bg-dark-300 text-text-secondary hover:text-white border border-dark-300 rounded-lg transition-colors text-sm font-medium"
+                  title="Copy PRD to clipboard"
+                >
+                  Copy
+                </button>
+                <button
+                  onClick={() => {
+                    const blob = new Blob([generatedPRD], { type: 'text/markdown' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `${formData.appName.toLowerCase().replace(/\s+/g, '-')}-prd.md`;
+                    a.click();
+                    URL.revokeObjectURL(url);
+                  }}
+                  className="px-4 py-2 bg-crimson hover:bg-crimson-light text-white rounded-lg transition-colors text-sm font-medium"
+                  title="Download PRD as markdown file"
+                >
+                  Download
+                </button>
+                <button
+                  onClick={() => {
+                    setGeneratedPRD(null);
+                    setFormData({
+                      appName: '',
+                      description: '',
+                      painPoint: '',
+                      solution: '',
+                    });
+                    setTouched({
+                      appName: false,
+                      description: false,
+                      painPoint: false,
+                      solution: false,
+                    });
+                    setError(null);
+                  }}
+                  className="px-4 py-2 bg-dark-200 hover:bg-error text-text-secondary hover:text-white border border-dark-300 hover:border-error rounded-lg transition-colors text-sm font-medium"
+                  title="Create a new PRD"
+                >
+                  New PRD
+                </button>
+              </div>
             </div>
           </div>
-          <div className="prose prose-invert max-w-none">
-            <pre className="whitespace-pre-wrap text-sm text-text-secondary bg-dark-200 p-4 rounded-lg overflow-x-auto">
-              {generatedPRD}
-            </pre>
+
+          {/* PRD Content */}
+          <div className="bg-dark-100 border border-dark-300 border-t-0 rounded-b-lg p-6">
+            <div className="markdown-content prose prose-invert max-w-none bg-dark-200 p-6 rounded-lg overflow-x-auto">
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {generatedPRD}
+              </ReactMarkdown>
+            </div>
           </div>
         </div>
       )}
