@@ -36,7 +36,10 @@ interface FieldConfig {
   label: string;
 }
 
-const FIELD_LIMITS: Record<keyof FormData, FieldConfig> = {
+// Field limits for validated text fields only (prdType doesn't need validation)
+type ValidatedField = Exclude<keyof FormData, 'prdType'>;
+
+const FIELD_LIMITS: Record<ValidatedField, FieldConfig> = {
   appName: { min: 3, max: 50, label: 'App Name' },
   description: { min: 50, max: 500, label: 'Description' },
   painPoint: { min: 50, max: 500, label: 'Pain Point' },
@@ -53,6 +56,7 @@ export default function PRDForm() {
   });
 
   const [touched, setTouched] = useState<Record<keyof FormData, boolean>>({
+    prdType: false,
     appName: false,
     description: false,
     painPoint: false,
@@ -64,7 +68,7 @@ export default function PRDForm() {
   const [error, setError] = useState<string | null>(null);
 
   // Validate individual field
-  const validateField = (field: keyof FormData, value: string): FieldValidation => {
+  const validateField = (field: ValidatedField, value: string): FieldValidation => {
     const config = FIELD_LIMITS[field];
     const length = value.length;
 
@@ -81,7 +85,7 @@ export default function PRDForm() {
   };
 
   // Get character counter color based on length
-  const getCounterColor = (field: keyof FormData, length: number): string => {
+  const getCounterColor = (field: ValidatedField, length: number): string => {
     const config = FIELD_LIMITS[field];
     if (length === 0) return 'text-text-tertiary';
     if (length < config.min) return 'text-warning';
@@ -99,7 +103,7 @@ export default function PRDForm() {
       });
   };
 
-  const handleChange = (field: keyof FormData, value: string) => {
+  const handleChange = (field: ValidatedField, value: string) => {
     // Enforce max length
     const config = FIELD_LIMITS[field];
     const truncatedValue = value.slice(0, config.max);
@@ -122,6 +126,7 @@ export default function PRDForm() {
 
     // Mark all fields as touched
     setTouched({
+      prdType: false, // prdType doesn't need touched state
       appName: true,
       description: true,
       painPoint: true,
@@ -357,6 +362,7 @@ export default function PRDForm() {
                       solution: '',
                     });
                     setTouched({
+                      prdType: false,
                       appName: false,
                       description: false,
                       painPoint: false,
