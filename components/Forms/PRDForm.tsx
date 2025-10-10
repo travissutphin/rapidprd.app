@@ -18,6 +18,7 @@ import remarkGfm from 'remark-gfm';
  */
 
 interface FormData {
+  prdType: string;
   appName: string;
   description: string;
   painPoint: string;
@@ -44,6 +45,7 @@ const FIELD_LIMITS: Record<keyof FormData, FieldConfig> = {
 
 export default function PRDForm() {
   const [formData, setFormData] = useState<FormData>({
+    prdType: 'Developer Ready PRD',
     appName: '',
     description: '',
     painPoint: '',
@@ -89,10 +91,12 @@ export default function PRDForm() {
 
   // Check if form is valid
   const isFormValid = (): boolean => {
-    return (Object.keys(formData) as Array<keyof FormData>).every((field) => {
-      const validation = validateField(field, formData[field]);
-      return validation.isValid;
-    });
+    return (Object.keys(formData) as Array<keyof FormData>)
+      .filter((field) => field !== 'prdType') // Skip prdType (dropdown always has value)
+      .every((field) => {
+        const validation = validateField(field, formData[field]);
+        return validation.isValid;
+      });
   };
 
   const handleChange = (field: keyof FormData, value: string) => {
@@ -157,6 +161,27 @@ export default function PRDForm() {
 
   return (
     <form onSubmit={handleSubmit} className="w-full max-w-4xl mx-auto space-y-6">
+      {/* PRD Type Dropdown */}
+      <div className="space-y-2">
+        <label htmlFor="prdType" className="text-sm font-medium text-text-secondary">
+          PRD Type
+        </label>
+        <select
+          id="prdType"
+          value={formData.prdType}
+          onChange={(e) => setFormData((prev) => ({ ...prev, prdType: e.target.value }))}
+          className="w-full px-4 py-3 bg-dark-200 border border-dark-300 rounded-lg text-white focus:outline-none focus:ring-2 focus:border-crimson focus:ring-crimson/20 transition-colors"
+        >
+          <option value="Developer Ready PRD">Developer Ready PRD</option>
+          <option value="Figma PRD (Coming Soon)" disabled className="text-text-tertiary">
+            Figma PRD (Coming Soon)
+          </option>
+          <option value="Client Story (Coming Soon)" disabled className="text-text-tertiary">
+            Client Story (Coming Soon)
+          </option>
+        </select>
+      </div>
+
       {/* App Name Field */}
       <div className="space-y-2">
         <div className="flex items-center justify-between">
@@ -325,6 +350,7 @@ export default function PRDForm() {
                   onClick={() => {
                     setGeneratedPRD(null);
                     setFormData({
+                      prdType: 'Developer Ready PRD',
                       appName: '',
                       description: '',
                       painPoint: '',
